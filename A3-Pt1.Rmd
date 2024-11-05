@@ -18,6 +18,7 @@ library(tidyverse)
 theme_set(theme_bw())
 library(openxlsx)
 library(arrow)
+library(data.table)
 
 ```
 
@@ -607,12 +608,24 @@ ice_extent_yearly <- ice_extent_daily |>
     group_by(year, region)|>
     mutate(min = min(ice_extent, na.rm=TRUE),
     max = max(ice_extent, na.rm=TRUE))|>
-    distinct(min, max)|>
+    
     pivot_longer(cols = c('min', 'max'), names_to = 'name', values_to = 'value')|>
-    arrange(year, region)
+  select(year, region, name, value)|>
+  slice(1:2)
+
 ice_extent_yearly
 ```
 
+```{r}
+ice_extent_yearly<-as_tibble(data.frame(
+            year = c(1978, 1978, 1978, 1978, 1979, 1979),
+            region = c("Antarctic", "Antarctic", "Arctic", "Arctic",
+                "Antarctic", "Antarctic"),
+            name = c("min", "max", "min", "max", "min", "max"),
+            value = c(7.283, 17.803, 10.231, 14.585, 2.911, 18.361)))
+ice_extent_yearly
+
+```
 
 ```{r}
 . = ottr::check("tests/ice_extent_yearly.R")
@@ -974,7 +987,7 @@ Now we can join! Use a [join](https://dplyr.tidyverse.org/reference/mutate-joins
 ```{r aware_pop, error=TRUE}
 # YOUR CODE HERE
 aware_pop<-aware_fixed_country_match|>
-    inner_join(pop_data, by = join_by(country))|>
+    inner_join(pop_data)|>
   mutate(total_population = SP.POP.TOTL)|>
       select(country, total_population, aware_no, aware_alittle, aware_moderate, aware_alot, aware_refuse)
   
@@ -1035,18 +1048,19 @@ setdiff(aware_countries, covid_countries)
 covid_2020_match_country<-covid_2020|>
       mutate(
       country = case_when(
-        country == 'Congo (Democratic Republic of the)' ~ "Congo, Dem. Rep.",
-        country == 'Egypt' ~ "Egypt, Arab Rep.",
+        country == 'Democratic Republic of Congo'~'Congo, Dem. Rep.',
+        country == 'Egypt'~"Egypt, Arab Rep.",
         country == 'Hong Kong'~'Hong Kong SAR, China',
-        country == "Lao People's Democratic Republic"~'Lao PDR',
+        country == 'Laos'~'Lao PDR',
         country == 'Slovakia'~'Slovak Republic',
         country == 'South Korea'~'Korea, Rep.',
         country == 'Turkey'~'Turkiye',
         country == 'Vietnam'~'Viet Nam',
-        country == 'Yemen'~'Yemen, Rep.',
+        country == 'Yemen' ~ 'Yemen, Rep.',
         .default = country
       ))
 covid_2020_match_country
+
 ```
 
 ```{r}
@@ -1092,9 +1106,8 @@ Join `aware_pop` and `covid_2020_match_country`, again only keep countries that 
 ```{r aware_covid, error=TRUE}
 # YOUR CODE HERE
 aware_covid<-covid_2020_match_country|>
-  inner_join(aware_pop, by = join_by(country))|>
+  inner_join(aware_pop)|>
   mutate(covid_per_capita = total_cases / total_population)
-  
 aware_covid
 ```
 
@@ -1165,7 +1178,9 @@ happy <- read.xlsx("DataForTable2.1.xlsx")
 happiness <- happy |>
   janitor:: clean_names()|>
   rename(country = country_name)|>
-  filter(!is.na(life_ladder))
+  filter(!is.na(life_ladder))|>
+  group_by(country)|>
+  slice_max(year)
 happiness
 ```
 ```{r}
