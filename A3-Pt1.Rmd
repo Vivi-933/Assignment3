@@ -867,10 +867,10 @@ Many of these countries are actually in both, but have a different name! Before 
 - One pattern that I notice is that aware_countries has periods (`.`) instead of spaces. As a first step (to save us from manually entering 29 different country names twice), change all periods to spaces using `str_replace()`.
     - NOTE: The `.` is a special character in regex and needs to be [escaped](https://r4ds.hadley.nz/regexps#sec-regexp-escaping)!
 
-```{r aware_fixed_country, error=TRUE}
+```{r aware_fixed_country}
 aware_fixed_country <- climate_awareness |>
     mutate(country = str_replace_all(country, '\\.', ' '))
-aware_fixed_country
+
 aware_fixed_country |> pull(country) |> unique()
 ```
 
