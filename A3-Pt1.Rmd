@@ -922,7 +922,7 @@ That's slightly less that we need to deal with! Overall, the `pop_data` has more
 Use a `case_when()` statement to change the countries in `aware_fixed_country` where possible. Specifically, fix the following:
 
 - "Bolivia (Plurinational State of)", "Congo (Democratic Republic of the)", "Egypt", "Hong Kong", "Lao People's Democratic Republic", "Slovakia", "North MAcedonia", "South Korea" (be careful with this one!), "Turkey", "Vietnam", "Yemen".
-```{r aware_fixed_country_match}
+```{r aware_fixed_country_match, error=TRUE}
 aware_fixed_country_match <- aware_fixed_country |>
     mutate(
       country = case_when(
@@ -1173,7 +1173,7 @@ To make the data more convenient for Part 2, perform the following operations. T
 - The data contain information from multiple years, and these years are not consistent for each country. For Part 2, these data will mainly be used to compare countries (we don't need the happiness over time). Filter the data so that we only have the *most recent* observation of the relevant values. (In my solution, I use the `slice()` function as part of a very short pipeline.)
 
 
-```{r happiness}
+```{r happiness, error=TRUE}
 happy <- read.xlsx("DataForTable2.1.xlsx")
 happiness <- happy |>
   janitor:: clean_names()|>
@@ -1183,6 +1183,7 @@ happiness <- happy |>
   slice_max(year)
 happiness
 ```
+
 ```{r}
 . = ottr::check("tests/happiness.R")
 ```
