@@ -770,8 +770,9 @@ happiness <- happy |>
   rename(country = country_name)|>
   filter(!is.na(life_ladder))|>
   group_by(country)|>
-  slice_max(year)
+  slice_max(year) 
 happiness
+#TEST1
 ```
 
 ```{r}
