@@ -136,30 +136,6 @@ at_cyclone
 . = ottr::check("tests/at_cyclone.R")
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ```{r}
 np_cyclone <- str_c(cyclone_data_address, np_cyclone_filename, sep = "") |>
     read_csv(
@@ -209,32 +185,6 @@ print(np_cyclone)
 . = ottr::check("tests/np_cyclone.R")
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ### Combine into One Data Frame
 
 Now, bind the two data frames together (row-wise). Since the `Basin` column already contains the information about which basin the cyclone was in, there's no need to specify an ID. (Hint: don't overthink this one.)
@@ -249,28 +199,6 @@ print(cyclones_data_update_0)
 ```{r}
 . = ottr::check("tests/cyclones_data_update_1.R")
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ### Fix Latitude and Longitude
 
@@ -305,35 +233,6 @@ cyclones_data_update_1
 . = ottr::check("tests/convert_latlon.R")
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ### Extract Dates
 
 We have a few more tasks. First, create a [datetime](https://fralfaro.github.io/r4ds/datetimes.html) object using the `make_datetime()` function so that R knows how to plot the times. Label the new column as "`date`".
@@ -353,37 +252,6 @@ print(cyclones_data_update_2)
 
 . = ottr::check("tests/cyclones_data_update_2.R")
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ### Assign Storm Categories
 
@@ -416,38 +284,6 @@ print(cyclones_data)
 ```{r}
 . = ottr::check("tests/cyclones_update_2.R")
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ### Plots and Summary Statistics!
 
 ### Clean Up
@@ -462,38 +298,6 @@ write_parquet(cyclones_data, save_name)
 ```{r}
 . = ottr::check("tests/write_cyclones.R")
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ## Sea Ice Data
 
@@ -661,30 +465,6 @@ write_parquet(ice_extent_yearly, save_name)
 ```{r}
 . = ottr::check("tests/sea_ice_parquet.R")
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # Opinions on climate data from Meta (from A2)
 
 These data are the same as the data we worked with on A2. The following code will load in the awareness data; you are welcome to copy it for the happening data for the purpose of this assignment (you will not be graded on this, but it may benefit you in part 2).
@@ -770,37 +550,6 @@ covid_2020
 ```{r}
 . = ottr::check("tests/covid_2020.R")
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Before we move on, we'll save `covid_2020.parquet` for use in Part 2.
 
 ```{r covid_2020_parquet, error=TRUE}
@@ -811,36 +560,6 @@ write_parquet(covid_2020, save_name)
 ```{r}
 . = ottr::check("tests/covid_2020_parquet.R")
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 As a very early exploration, let's compare climate awareness to the total number of covid cases in a country *per capita* in the year 2020. 
 
 In order to calculate per capita values, we need the population size. The easiest way that I can find is with the R package [`wbstats`](https://cran.r-project.org/web/packages/wbstats/vignettes/wbstats.html), which pulls updated statistics from the World Bank.
@@ -880,34 +599,6 @@ aware_fixed_country |> pull(country) |> unique()
 ```{r}
 . = ottr::check("tests/aware_fixed_country.R")
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Now let's run the check again:
 
 ```{r}
@@ -954,35 +645,6 @@ setdiff(aware_countries, pop_countries) |> sort()
 ```{r}
 . = ottr::check("tests/aware_fixed_country_match.R")
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 The remaining countries are either broader geopolitical areas rather than countries, or Taiwan (which is apparently recognized as a country by Meta but not World Bank). For simplicity, we will simply move on without these countries/areas.
 
 Now we can join! Use a [join](https://dplyr.tidyverse.org/reference/mutate-joins.html) that only keeps countries that are in both data sets. The final data frame should have the columns `country`, `total_population`, `aware_no`, `aware_alittle`, `aware_moderate`, `aware_alot`, and `aware_refuse`.
@@ -1001,41 +663,6 @@ aware_pop
 ```{r}
 . = ottr::check("tests/aware_pop.R")
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 Finally, let's make sure the country names in `covid_2020` match those in `aware_pop`. In the end, all countries in `covid_2020` should be in `aware_pop` (but `aware_pop` will have countries that are not present in `covid_2020_match_country`, which is unavoidable).
 
@@ -1069,39 +696,6 @@ covid_2020_match_country
 ```{r}
 . = ottr::check("tests/covid_2020_match_country.R")
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Okay, now take a quick breather. Grab a tea, go for a walk, rock out to some music, whatever self care you want. That was a lot of finicky stuff, but now we've got a data set that we can use!
 
 Join `aware_pop` and `covid_2020_match_country`, again only keep countries that are in both. Create a new column called `covid_per_capita` based on the total cases divided by total population.
@@ -1155,13 +749,6 @@ Some interesting patterns:
 
 There are several explanations for these patterns, such as awareness being linked to education and/or travel volume in first-world/developed countries, or perhaps it's just a consequence of how we define a "continent" (could you list the 18 countries in North America?). Most likely some of the results are due to the differences in the way countries track and report cases of COIVD-19.
 
-
-
-
-
-
-
-
 # World Happiness Report Score (from 2023 report)
 
 Finally, we have data from the [World Happiness Report](https://worldhappiness.report), downloaded from [here](https://worldhappiness.report/ed/2023/#appendices-and-data) and distributed with this assignment. The "Statistical Appendix" includes the description of each column, especially what the question was. 
@@ -1196,7 +783,6 @@ And, finally, save the file:
 ```{r}
 write_parquet(happiness, "happiness.parquet")
 ```
-
 
 
 ```{r active="", eval=FALSE}
