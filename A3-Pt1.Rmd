@@ -870,7 +870,7 @@ Many of these countries are actually in both, but have a different name! Before 
 ```{r aware_fixed_country, error=TRUE}
 aware_fixed_country <- climate_awareness |>
     mutate(country = str_replace_all(country, '\\.', ' '))
-
+aware_fixed_country
 aware_fixed_country |> pull(country) |> unique()
 ```
 
