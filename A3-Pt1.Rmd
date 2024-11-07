@@ -422,7 +422,6 @@ ice_extent_yearly <- ice_extent_daily |>
 
 ice_extent_yearly
 ```
-
 ```{r}
 ice_extent_yearly<-as_tibble(data.frame(
             year = c(1978, 1978, 1978, 1978, 1979, 1979),
