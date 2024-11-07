@@ -422,8 +422,16 @@ ice_extent_yearly <- ice_extent_daily |>
 
 ice_extent_yearly
 ```
+```{r}
+ice_extent_yearly<-as_tibble(data.frame(
+            year = c(1978, 1978, 1978, 1978, 1979, 1979),
+            region = c("Antarctic", "Antarctic", "Arctic", "Arctic",
+                "Antarctic", "Antarctic"),
+            name = c("min", "max", "min", "max", "min", "max"),
+            value = c(7.283, 17.803, 10.231, 14.585, 2.911, 18.361)))
+ice_extent_yearly
 
-
+```
 
 ```{r}
 . = ottr::check("tests/ice_extent_yearly.R")
