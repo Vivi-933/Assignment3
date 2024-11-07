@@ -413,24 +413,13 @@ In the chunk below, find the maximum and minimum sea ice extent for each year (b
 ```{r}
 ice_extent_yearly <- ice_extent_daily |>
     group_by(year, region)|>
-    mutate(min = min(ice_extent, na.rm=TRUE),
-    max = max(ice_extent, na.rm=TRUE))|>
+    summarise(min = min(ice_extent, na.rm=TRUE),
+    max = max(ice_extent, na.rm=TRUE), .groups = "drop")|>
     
     pivot_longer(cols = c('min', 'max'), names_to = 'name', values_to = 'value')|>
-  select(year, region, name, value)|>
-  slice(1:2)
+  select(year, region, name, value)
 
 ice_extent_yearly
-```
-```{r}
-ice_extent_yearly<-as_tibble(data.frame(
-            year = c(1978, 1978, 1978, 1978, 1979, 1979),
-            region = c("Antarctic", "Antarctic", "Arctic", "Arctic",
-                "Antarctic", "Antarctic"),
-            name = c("min", "max", "min", "max", "min", "max"),
-            value = c(7.283, 17.803, 10.231, 14.585, 2.911, 18.361)))
-ice_extent_yearly
-
 ```
 
 ```{r}
