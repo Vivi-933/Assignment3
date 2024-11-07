@@ -640,11 +640,9 @@ Now we can join! Use a [join](https://dplyr.tidyverse.org/reference/mutate-joins
 ```{r aware_pop, error=TRUE}
 # YOUR CODE HERE
 aware_pop<-aware_fixed_country_match|>
-    inner_join(pop_data)|>
-  mutate(total_population = SP.POP.TOTL)|>
-      select(country, total_population, aware_no, aware_alittle, aware_moderate, aware_alot, aware_refuse)
-  
-
+  inner_join(pop_data)|>
+  rename(total_population = SP.POP.TOTL)|>
+  select(country, total_population, aware_no, aware_alittle, aware_moderate, aware_alot, aware_refuse)
 aware_pop
 ```
 
