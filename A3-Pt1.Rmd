@@ -664,7 +664,7 @@ setdiff(aware_countries, covid_countries)
 covid_2020_match_country<-covid_2020|>
       mutate(
       country = case_when(
-        country == 'Democratic Republic of Congo'~'Congo, Dem. Rep.',
+        country == 'Congo'~'Congo, Dem. Rep.',
         country == 'Egypt'~"Egypt, Arab Rep.",
         country == 'Hong Kong'~'Hong Kong SAR, China',
         country == 'Laos'~'Lao PDR',
