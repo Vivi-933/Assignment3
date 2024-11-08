@@ -1,17 +1,16 @@
 ---
-title: "TITLE OF YOUR PROJECT"
-author: "PUT YOUR MYLS GROUP NUMBER HERE, THEN LIST GROUP MEMBERS BELOW"
+title: "The effect of Cyclones on Climate Awareness and Happiness (WIP)"
+author: "Group 12"
 date: "November 12th, 2024"
 output: pdf_document
 ---
 
 List your group members, including their student numbers, here:
 
-- John K. Samson (#########)
-- John Darnielle (#########)
-- Craig Finn (#########)
-- Joel Plaskett (########)
-- Ezra Furman (#########)
+- Joshua Goudy ()
+- Melissa Thambiaiah ()
+- Emaan Umar (169108097)
+- Joseph Egbo ()
 
 You **must** be in a group in MyLS in order to see the DropBox used for submission. Even if you're alone, you must join a group by yourself.
 
@@ -41,6 +40,8 @@ You will only submit the PDF version of this document. To knit to PDF, you'll ne
 
 # Abstract
 
+Ideas: How does a cyclone hitting a contry effect the climate awareness and overall happiness.
+
 General context, very brief data descriptions, techniques used, and general conclusions, all contained within a single, concise paragraph.
 
 # Introduction
@@ -52,13 +53,6 @@ If needed, this paragraph is more information about the context.
 In this report, we are going to explore some aspects climate change and the impact and/or perceptions of it by using exploratory techniques. We'll explore <<general description of data>> using <<general description of techniques>>.
 
 By the end of this report, we will have shown ...
-
-
-
-
-
-
-
 
 
 # Data Description
@@ -107,9 +101,6 @@ In order to clean the data, we <<steps to clean the data, concise but precise en
 ## Combining the Data
 
 Explain how any combinations of data were performed. Explain what kind of join was needed, whether columns had to be modified (for example, matching "country" names.)
-
-
-
 
 
 # Exploratory Data Analysis
