@@ -674,7 +674,7 @@ covid_2020_match_country<-covid_2020|>
         country == 'Vietnam'~'Viet Nam',
         country == 'Yemen' ~ 'Yemen, Rep.',
         .default = country
-      ))
+      )) 
 covid_2020_match_country
 
 ```
