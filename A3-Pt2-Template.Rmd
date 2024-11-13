@@ -65,7 +65,7 @@ cyclone_data <- read_parquet('cyclones_data.parquet')
 
 The data comes from NOAA Cyclone/Hurricane Data contains record of tropical storms over the past 173 years.
 
-In order to clean/tidy the data, we separated each different type of data entry into a unique column, filtered out irrelevant data entries, and removed outdated entries.
+In order to clean/tidy the data, we separated each different type of data entry into a unique column, filtered out irrelevant data entries, converted the location data to a readable format, and classified the storms.
 
 
 ## Climate Awareness Data
@@ -86,7 +86,7 @@ happiness_data <- read_parquet('happiness.parquet')
 
 The data come from World Happiness Report Score (from 2023 report) and records various statistics about countries that are believed to impact the overall happiness of a country and gives them an overall happiness score, going forward this data set will be referred to as 'happiness'.
 
-In order to clean/tidy the data, we separated each different type of data entry into a unique column, filtered out irrelevant data entries, and removed outdated entries.
+In order to clean/tidy the data, we separated each different removed repeated data, filtered out countries without a lifeladder score, and filtered out the outdated entries.
 
 
 ## Combining the Data
