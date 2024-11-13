@@ -13,11 +13,6 @@ List your group members, including their student numbers, here:
 - Emaan Umar (169108097)
 - Joseph Egbo (143037470)
 
-
-You **must** be in a group in MyLS in order to see the DropBox used for submission. Even if you're alone, you must join a group by yourself.
-
-You **must** be in a group with people from the same section as you. MyLS does not allow for groups including students from both Data100A and Data100B.
-
 Ideas: Cyclones, climate change, and happiness
 
 - Does a cyclone hitting a country increase climate awareness and decrease happiness
@@ -33,26 +28,18 @@ library(tidyverse)
 library(arrow)
 ```
 
-
-# Instructions
-
-You are encouraged to remove this instruction section prior to submission.
-
-It is recommended that you follow the structure of this template. The text is all placeholder - you are free to change any/all wording as you please, but it is very helpful for the grading process if you keep the same structure. Anything in <<double angle brackets>> definitely needs to be changed, but you are free to change any/all sentences!
-
 Note that all of the code is *hidden* by default. This file will be graded based on the insights, not the code.
 
 You will only submit the PDF version of this document. To knit to PDF, you'll need to run `install.packages("tinytex")` in the console, followed by `tinytex::install_tinytex()` (DO NOT PUT THESE COMMANDS IN AN RMD FILE!!!). If you encounter errors in "Knit to PDF", you can "knit to html" and then print the html file to PDF using your operating system's PDF view (e.g. Adobe Acrobat). Only standalone PDF files will be accepted by MyLS.
 
 # Abstract
 
-Ideas: How does a cyclone hitting a contry effect the climate awareness and overall happiness.
+Ideas: How does a cyclone hitting a country affect the climate awareness and overall happiness.
 
-General context, very brief data descriptions, techniques used, and general conclusions, all contained within a single, concise paragraph.
 
 # Introduction
 
-In this report, we are going to delve into the correlation between cyclones, climate awareness and the way in which happiness levels fluctuate based on the occurrences of cyclones. To establish a sense of importance on these topics, let's dive into the history of Hurricane Katrina. Making its mark in American history, there is empirical evidence that reveals how Hurricane Katrina has dicatated happiness levels, while promoting the significance of climate awareness. 
+In this report, we are going to delve into the correlation between cyclones, climate awareness and the way in which happiness levels fluctuate based on the occurrences of cyclones. To establish a sense of importance on these topics, let's dive into the history of Hurricane Katrina. Making its mark in American history, there is empirical evidence that reveals how Hurricane Katrina has dictated happiness levels, while promoting the significance of climate awareness. 
          
 Moreover, we are applying exploratory techniques by visualizing the graphical representations of these data sets in order to conduct an effective comparison between the information sets. 
 
