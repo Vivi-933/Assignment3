@@ -9,17 +9,10 @@ List your group members, including their student numbers, here:
 <<<<<<< Updated upstream
 
 - Joshua Goudy (169031329)
-- Melissa Thambiaiah ()
+- Melissa Thambiaiah (169060509)
 - Emaan Umar (169108097)
-- Joseph Egbo ()
-=======
-yep
-- John K. Samson (#########)
-- John Darnielle (#########)
-- Craig Finn (#########)
-- Joel Plaskett (########)
-- Ezra Furman (#########)
->>>>>>> Stashed changes
+- Joseph Egbo (143037470)
+
 
 You **must** be in a group in MyLS in order to see the DropBox used for submission. Even if you're alone, you must join a group by yourself.
 
