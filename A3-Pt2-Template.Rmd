@@ -7,7 +7,7 @@ output: pdf_document
 
 List your group members, including their student numbers, here:
 
-- Joshua Goudy ()
+- Joshua Goudy (169031329)
 - Melissa Thambiaiah ()
 - Emaan Umar (169108097)
 - Joseph Egbo ()
@@ -69,9 +69,9 @@ By the end of this report, we will have shown ...
 # with your data, which makes it easier to describe below!
 ```
 
-The data come from <<place>> and describe <<more specific description of the data>>.
+The data comes from NOAA Cyclone Data, 2022 Climate Change Opinion Survey, and World Happiness Report Score (from 2023 report). Hurricane Data contains record of tropical storms over the past 173 years, climate change opinion records how aware the population of various countries are about climate change, and happiness records various statistics about countries that are believed to impact the overall happiness of a country and gives them an overall happiness score.
 
-In order to clean the data, we <<steps to clean the data, concise but precise enough that a reader could follow your steps without seeing your code>>.
+In order to clean/tidy the data, we separated each differenttype of data entry into a unique column, filtered out irrelevant data entries, and removed outdated entries.
 
 ## <<Data Set 2>>
 
