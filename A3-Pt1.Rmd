@@ -640,10 +640,16 @@ Now we can join! Use a [join](https://dplyr.tidyverse.org/reference/mutate-joins
 ```{r aware_pop, error=TRUE}
 # YOUR CODE HERE
 aware_pop<-aware_fixed_country_match|>
+<<<<<<< HEAD
     inner_join(pop_data)|>
   rename(total_population = SP.POP.TOTL)|>
       select(country, total_population, aware_no, aware_alittle, aware_moderate, aware_alot, aware_refuse)
 
+=======
+  inner_join(pop_data)|>
+  rename(total_population = SP.POP.TOTL)|>
+  select(country, total_population, aware_no, aware_alittle, aware_moderate, aware_alot, aware_refuse)
+>>>>>>> 48afc3e679eae13380f991bc578f72c4a46d45ae
 aware_pop
 ```
 
@@ -665,7 +671,7 @@ setdiff(aware_countries, covid_countries)
 covid_2020_match_country<-covid_2020|>
       mutate(
       country = case_when(
-        country == 'Democratic Republic of Congo'~'Congo, Dem. Rep.',
+        country == 'Congo'~'Congo, Dem. Rep.',
         country == 'Egypt'~"Egypt, Arab Rep.",
         country == 'Hong Kong'~'Hong Kong SAR, China',
         country == 'Laos'~'Lao PDR',
@@ -675,7 +681,7 @@ covid_2020_match_country<-covid_2020|>
         country == 'Vietnam'~'Viet Nam',
         country == 'Yemen' ~ 'Yemen, Rep.',
         .default = country
-      ))
+      )) 
 covid_2020_match_country
 
 ```
@@ -691,7 +697,7 @@ Join `aware_pop` and `covid_2020_match_country`, again only keep countries that 
 # YOUR CODE HERE
 aware_covid<-covid_2020_match_country|>
   inner_join(aware_pop)|>
-  mutate(covid_per_capita = total_cases / total_population)
+  mutate(cases_per_capita = total_cases / total_population)
 aware_covid
 ```
 
