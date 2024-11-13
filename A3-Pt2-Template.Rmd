@@ -6,15 +6,28 @@ output: pdf_document
 ---
 
 List your group members, including their student numbers, here:
+<<<<<<< Updated upstream
 
 - Joshua Goudy (169031329)
 - Melissa Thambiaiah ()
 - Emaan Umar (169108097)
 - Joseph Egbo ()
+=======
+yep
+- John K. Samson (#########)
+- John Darnielle (#########)
+- Craig Finn (#########)
+- Joel Plaskett (########)
+- Ezra Furman (#########)
+>>>>>>> Stashed changes
 
 You **must** be in a group in MyLS in order to see the DropBox used for submission. Even if you're alone, you must join a group by yourself.
 
 You **must** be in a group with people from the same section as you. MyLS does not allow for groups including students from both Data100A and Data100B.
+
+Ideas: Cyclones, climate change, and happiness
+
+- Does a cyclone hitting a country increase climate awareness and decrease happiness
 
 ```{r setup, include=FALSE}
 # echo = FALSE will set the Rmd to *not* show the R code. Don't change this.
