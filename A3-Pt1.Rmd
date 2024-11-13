@@ -4,8 +4,6 @@ author: "group 12 "
 date: "Due November 12th"
 ---
 
-
-
 ```{r active="", eval=FALSE}
 # BEGIN ASSIGNMENT 
 # Testing 
@@ -27,11 +25,10 @@ library(data.table)
 
 List all group members here:
 
-- Joshua Goudy
-- Melissa Thambiaiah
-- Emaan Umar
-- Joseph Egbo
-- 
+-   Joshua Goudy
+-   Melissa Thambiaiah
+-   Emaan Umar
+-   Joseph Egbo
 
 This file will be submitted as an Rmd file to GradeScope. You will need to create a group on GradeScope with the correct members. *If the person who submits this does not list you, you will not get a grade on this assignment!!!* Make sure you trust the person who is submitting it!
 
@@ -43,14 +40,12 @@ In this part, you will prepare the following data sets for analysis in Part 2. N
 
 Once you've completed the relevant sections, you will have the following files in your working directory:
 
-1. `cyclones_data.parquet` contains data for hurricane strength in both the Atlantic and North Pacific basins.
-2. `ice_extent_yearly.parquet` contains the yearly ice extent for the Arctic and the Antarctic poles.
-3. `climate_awareness.parquet` contains the proportion of people from each country who answered "no", "a little", ... to a question asking about their awareness of the actual definitions of climate change.
-4. `covid_2020.parquet` contains the total reported cases of COVID-19 in the year 2020 for all countries.
-    - It also, quite helpfully, includes the continent on which each country sits, which can be joined with other data frames (with some care).
-5. `happiness.parquet` contains information about the happiness of countries in the world, as measured by the `life_ladder` question (among other survey responses).
-
-
+1.  `cyclones_data.parquet` contains data for hurricane strength in both the Atlantic and North Pacific basins.
+2.  `ice_extent_yearly.parquet` contains the yearly ice extent for the Arctic and the Antarctic poles.
+3.  `climate_awareness.parquet` contains the proportion of people from each country who answered "no", "a little", ... to a question asking about their awareness of the actual definitions of climate change.
+4.  `covid_2020.parquet` contains the total reported cases of COVID-19 in the year 2020 for all countries.
+    -   It also, quite helpfully, includes the continent on which each country sits, which can be joined with other data frames (with some care).
+5.  `happiness.parquet` contains information about the happiness of countries in the world, as measured by the `life_ladder` question (among other survey responses).
 
 ## NOAA data for Atlantic and Pacific Basin
 
@@ -70,7 +65,6 @@ new_columns <- c("status", "latitude", "longitude", "max_wind",
     "NW_extend_64", "r_max_wind"
 )
 ```
-
 
 ```{r at_cyclone, error=TRUE}
 
@@ -204,7 +198,7 @@ print(cyclones_data_update_0)
 
 The latitude and longitude are not in a format that makes for nice plotting. They're encoded as "`28.0N`" for 28 degrees North and "28.0S" for 28 degrees South of the equator. By convention, "`28.0N`" should be `28` degrees (a positive number) and `28.8S` should be -28 degrees (a negative number). Similarly, `94W` should be -94 while 94E should be 94. Fix this.
 
-Write a function that takes in a vector of latitude _or_ longitude in the format of these data, then outputs a positive version of the numeric part if there's an "N" or an "E", and a negative version of the numeric part if there's a "W" or "S".
+Write a function that takes in a vector of latitude *or* longitude in the format of these data, then outputs a positive version of the numeric part if there's an "N" or an "E", and a negative version of the numeric part if there's a "W" or "S".
 
 There are many ways to solve this. My solution is one line and uses `parse_number()` and a single `if_else()` statement with a regex, but there are many possible ways to do this!
 
@@ -257,7 +251,8 @@ print(cyclones_data_update_2)
 
 Unlike in assignment 1, the category is not part of these data. However, we learned how storms are categorized! In particular, meteorologists use the [Saffir--Simpson hurricane wind scale (SSHWS)](https://en.wikipedia.org/wiki/Saffir%E2%80%93Simpson_scale) (note that our data are measured in knots on that scale).
 
-Categorize the cyclones based on the scale above using a `case_when()` statement based on the `max_wind` column. The code is set up to create an [*ordered factor*](https://fralfaro.github.io/r4ds/factors.html) so that R knows that the levels are ordered as TD < TS < 1 < 2 < 3 < 4 < 5.
+Categorize the cyclones based on the scale above using a `case_when()` statement based on the `max_wind` column. The code is set up to create an [*ordered factor*](https://fralfaro.github.io/r4ds/factors.html) so that R knows that the levels are ordered as TD \< TS \< 1 \< 2 \< 3 \< 4 \< 5.
+
 ```{r cyclones_data}
 cat_levels <- c("TD", "TS", "1", "2", "3", "4", "5")
 
@@ -280,20 +275,20 @@ cyclones_data <- cyclones_data_update_2 |>
 print(cyclones_data)
 ```
 
-
 ```{r}
 . = ottr::check("tests/cyclones_update_2.R")
 ```
+
 ### Plots and Summary Statistics!
 
 ### Clean Up
 
 Now that we have a suitable data frame, save it as a parquet file with the file name `"cyclones_data.parquet"`.
+
 ```{r}
 save_name <- "cyclones_data.parquet"
 write_parquet(cyclones_data, save_name)
 ```
-
 
 ```{r}
 . = ottr::check("tests/write_cyclones.R")
@@ -385,7 +380,6 @@ ice_extent_daily
 
 ## Stats and Plots
 
-
 ```{r}
 ice_extent_daily |>
     ggplot() +
@@ -400,15 +394,15 @@ ice_extent_daily |>
 
 In the chunk below, find the maximum and minimum sea ice extent for each year (by region). Pivot the data frame so that there's a column labelled "name" and a column labelled "value", as below.
 
-| year  | region    | name | value   |
-|-------|-----------|------|---------|
-| 1978  | Antarctic | min  | 7.283   |
-| 1978  | Antarctic | max  | 17.803  |
-| 1978  | Arctic    | min  | 10.231  |
-| 1978  | Arctic    | max  | 14.585  |
-| 1979  | Antarctic | min  | 2.911   |
-| 1979  | Antarctic | max  | 18.361  |
-| ...   | ...       | ...  | ...     |
+| year | region    | name | value  |
+|------|-----------|------|--------|
+| 1978 | Antarctic | min  | 7.283  |
+| 1978 | Antarctic | max  | 17.803 |
+| 1978 | Arctic    | min  | 10.231 |
+| 1978 | Arctic    | max  | 14.585 |
+| 1979 | Antarctic | min  | 2.911  |
+| 1979 | Antarctic | max  | 18.361 |
+| ...  | ...       | ...  | ...    |
 
 ```{r}
 ice_extent_yearly <- ice_extent_daily |>
@@ -441,8 +435,6 @@ ggplot(ice_extent_yearly) +
     )
 ```
 
-
-
 Finally, let's save the data to `ice_extent_yeary.parquet`.
 
 ```{r sea_ice_parquet, error=TRUE}
@@ -453,6 +445,7 @@ write_parquet(ice_extent_yearly, save_name)
 ```{r}
 . = ottr::check("tests/sea_ice_parquet.R")
 ```
+
 # Opinions on climate data from Meta (from A2)
 
 These data are the same as the data we worked with on A2. The following code will load in the awareness data; you are welcome to copy it for the happening data for the purpose of this assignment (you will not be graded on this, but it may benefit you in part 2).
@@ -520,7 +513,7 @@ covid_cases <- owid_address |>
 covid_cases
 ```
 
-The data are collected daily, which leads to a lot of data! This is probably more than we need to compare to the other variables. 
+The data are collected daily, which leads to a lot of data! This is probably more than we need to compare to the other variables.
 
 In the chunk below, aggregate the data to be total cases in 2020, by country. Your solution should only have columns `country`, `continent` and `total_cases`. (*Hint*: The `year()` function will extract the year from a date column.)
 
@@ -538,6 +531,7 @@ covid_2020
 ```{r}
 . = ottr::check("tests/covid_2020.R")
 ```
+
 Before we move on, we'll save `covid_2020.parquet` for use in Part 2.
 
 ```{r covid_2020_parquet, error=TRUE}
@@ -548,7 +542,8 @@ write_parquet(covid_2020, save_name)
 ```{r}
 . = ottr::check("tests/covid_2020_parquet.R")
 ```
-As a very early exploration, let's compare climate awareness to the total number of covid cases in a country *per capita* in the year 2020. 
+
+As a very early exploration, let's compare climate awareness to the total number of covid cases in a country *per capita* in the year 2020.
 
 In order to calculate per capita values, we need the population size. The easiest way that I can find is with the R package [`wbstats`](https://cran.r-project.org/web/packages/wbstats/vignettes/wbstats.html), which pulls updated statistics from the World Bank.
 
@@ -574,8 +569,8 @@ setdiff(aware_countries, pop_countries)
 
 Many of these countries are actually in both, but have a different name! Before we can join these two data sets together, we need the primary key (`country`) to match where possible.
 
-- One pattern that I notice is that aware_countries has periods (`.`) instead of spaces. As a first step (to save us from manually entering 29 different country names twice), change all periods to spaces using `str_replace()`.
-    - NOTE: The `.` is a special character in regex and needs to be [escaped](https://r4ds.hadley.nz/regexps#sec-regexp-escaping)!
+-   One pattern that I notice is that aware_countries has periods (`.`) instead of spaces. As a first step (to save us from manually entering 29 different country names twice), change all periods to spaces using `str_replace()`.
+    -   NOTE: The `.` is a special character in regex and needs to be [escaped](https://r4ds.hadley.nz/regexps#sec-regexp-escaping)!
 
 ```{r aware_fixed_country, error=TRUE}
 aware_fixed_country <- climate_awareness |>
@@ -587,6 +582,7 @@ aware_fixed_country |> pull(country) |> unique()
 ```{r}
 . = ottr::check("tests/aware_fixed_country.R")
 ```
+
 Now let's run the check again:
 
 ```{r}
@@ -603,7 +599,8 @@ That's slightly less that we need to deal with! Overall, the `pop_data` has more
 
 Use a `case_when()` statement to change the countries in `aware_fixed_country` where possible. Specifically, fix the following:
 
-- "Bolivia (Plurinational State of)", "Congo (Democratic Republic of the)", "Egypt", "Hong Kong", "Lao People's Democratic Republic", "Slovakia", "North MAcedonia", "South Korea" (be careful with this one!), "Turkey", "Vietnam", "Yemen".
+-   "Bolivia (Plurinational State of)", "Congo (Democratic Republic of the)", "Egypt", "Hong Kong", "Lao People's Democratic Republic", "Slovakia", "North MAcedonia", "South Korea" (be careful with this one!), "Turkey", "Vietnam", "Yemen".
+
 ```{r aware_fixed_country_match, error=TRUE}
 aware_fixed_country_match <- aware_fixed_country |>
     mutate(
@@ -629,10 +626,10 @@ print("Countries in aware_countries that aren't in pop_data:")
 setdiff(aware_countries, pop_countries) |> sort()
 ```
 
-
 ```{r}
 . = ottr::check("tests/aware_fixed_country_match.R")
 ```
+
 The remaining countries are either broader geopolitical areas rather than countries, or Taiwan (which is apparently recognized as a country by Meta but not World Bank). For simplicity, we will simply move on without these countries/areas.
 
 Now we can join! Use a [join](https://dplyr.tidyverse.org/reference/mutate-joins.html) that only keeps countries that are in both data sets. The final data frame should have the columns `country`, `total_population`, `aware_no`, `aware_alittle`, `aware_moderate`, `aware_alot`, and `aware_refuse`.
@@ -640,10 +637,13 @@ Now we can join! Use a [join](https://dplyr.tidyverse.org/reference/mutate-joins
 ```{r aware_pop, error=TRUE}
 # YOUR CODE HERE
 aware_pop<-aware_fixed_country_match|>
+<<<<<<< HEAD
     inner_join(pop_data)|>
   rename(total_population = SP.POP.TOTL)|>
       select(country, total_population, aware_no, aware_alittle, aware_moderate, aware_alot, aware_refuse)
 
+=======
+>>>>>>> c34c26a38ce211ede5df216d1a7c929d7b783b41
   inner_join(pop_data)|>
   rename(total_population = SP.POP.TOTL)|>
   select(country, total_population, aware_no, aware_alittle, aware_moderate, aware_alot, aware_refuse)
@@ -686,6 +686,7 @@ covid_2020_match_country
 ```{r}
 . = ottr::check("tests/covid_2020_match_country.R")
 ```
+
 Okay, now take a quick breather. Grab a tea, go for a walk, rock out to some music, whatever self care you want. That was a lot of finicky stuff, but now we've got a data set that we can use!
 
 Join `aware_pop` and `covid_2020_match_country`, again only keep countries that are in both. Create a new column called `covid_per_capita` based on the total cases divided by total population.
@@ -694,7 +695,7 @@ Join `aware_pop` and `covid_2020_match_country`, again only keep countries that 
 # YOUR CODE HERE
 aware_covid<-covid_2020_match_country|>
   inner_join(aware_pop)|>
-  mutate(cases_per_capita = total_cases / total_population)
+  mutate(covid_per_capita = total_cases / total_population)
 aware_covid
 ```
 
@@ -733,25 +734,24 @@ aware_covid |>
 
 Some interesting patterns:
 
-- It looks like the "refused" group are pretty similar to the "no" group. It seems safe to say that the people who refuse to answer specific questions on a climate survey are not aware of the actual definitions being used.
-- For the Americas, it looks like being more aware of climate change is associated with an *increase* in COVID-19 cases.
-- For other continents, there doesn't appear to be any strong patterns.
+-   It looks like the "refused" group are pretty similar to the "no" group. It seems safe to say that the people who refuse to answer specific questions on a climate survey are not aware of the actual definitions being used.
+-   For the Americas, it looks like being more aware of climate change is associated with an *increase* in COVID-19 cases.
+-   For other continents, there doesn't appear to be any strong patterns.
 
 There are several explanations for these patterns, such as awareness being linked to education and/or travel volume in first-world/developed countries, or perhaps it's just a consequence of how we define a "continent" (could you list the 18 countries in North America?). Most likely some of the results are due to the differences in the way countries track and report cases of COIVD-19.
 
 # World Happiness Report Score (from 2023 report)
 
-Finally, we have data from the [World Happiness Report](https://worldhappiness.report), downloaded from [here](https://worldhappiness.report/ed/2023/#appendices-and-data) and distributed with this assignment. The "Statistical Appendix" includes the description of each column, especially what the question was. 
+Finally, we have data from the [World Happiness Report](https://worldhappiness.report), downloaded from [here](https://worldhappiness.report/ed/2023/#appendices-and-data) and distributed with this assignment. The "Statistical Appendix" includes the description of each column, especially what the question was.
 
 For the most part, the "life_ladder" column is the most important - this is the WHR's main question that gets at how "happy" the people of a country are. You may choose to explore other options though - perhaps people's perceptions of corruption affect their response to climate issues?
 
 To make the data more convenient for Part 2, perform the following operations. The first ones are easy, the last one is tricky!
 
-- Use `janitor` to clean the names. 
-- Rename `country_name` to `country`.
-- Remove any rows for which `life_ladder` is `NA`.
-- The data contain information from multiple years, and these years are not consistent for each country. For Part 2, these data will mainly be used to compare countries (we don't need the happiness over time). Filter the data so that we only have the *most recent* observation of the relevant values. (In my solution, I use the `slice()` function as part of a very short pipeline.)
-
+-   Use `janitor` to clean the names.
+-   Rename `country_name` to `country`.
+-   Remove any rows for which `life_ladder` is `NA`.
+-   The data contain information from multiple years, and these years are not consistent for each country. For Part 2, these data will mainly be used to compare countries (we don't need the happiness over time). Filter the data so that we only have the *most recent* observation of the relevant values. (In my solution, I use the `slice()` function as part of a very short pipeline.)
 
 ```{r happiness, error=TRUE}
 happy <- read.xlsx("DataForTable2.1.xlsx")
@@ -762,6 +762,7 @@ happiness <- happy |>
   group_by(country)|>
   slice_max(year) 
 happiness
+#TEST
 ```
 
 ```{r}
@@ -773,7 +774,6 @@ And, finally, save the file:
 ```{r}
 write_parquet(happiness, "happiness.parquet")
 ```
-
 
 ```{r active="", eval=FALSE}
 # END ASSIGNMENT 
