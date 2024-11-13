@@ -9,17 +9,10 @@ List your group members, including their student numbers, here:
 <<<<<<< Updated upstream
 
 - Joshua Goudy (169031329)
-- Melissa Thambiaiah ()
+- Melissa Thambiaiah (169060509)
 - Emaan Umar (169108097)
-- Joseph Egbo ()
-=======
-yep
-- John K. Samson (#########)
-- John Darnielle (#########)
-- Craig Finn (#########)
-- Joel Plaskett (########)
-- Ezra Furman (#########)
->>>>>>> Stashed changes
+- Joseph Egbo (143037470)
+
 
 You **must** be in a group in MyLS in order to see the DropBox used for submission. Even if you're alone, you must join a group by yourself.
 
@@ -59,13 +52,11 @@ General context, very brief data descriptions, techniques used, and general conc
 
 # Introduction
 
-Climate change is something that has been studied. Here's some relevant information about the context of our study.
+In this report, we are going to delve into the correlation between cyclones, climate awareness and the way in which happiness levels fluctuate based on the occurrences of cyclones. To establish a sense of importance on these topics, let's dive into the history of Hurricane Katrina. Making its mark in American history, there is empirical evidence that reveals how Hurricane Katrina has dicatated happiness levels, while promoting the significance of climate awareness. 
+         
+Moreover, we are applying exploratory techniques by visualizing the graphical representations of these data sets in order to conduct an effective comparison between the information sets. 
 
-If needed, this paragraph is more information about the context.
-
-In this report, we are going to explore some aspects climate change and the impact and/or perceptions of it by using exploratory techniques. We'll explore <<general description of data>> using <<general description of techniques>>.
-
-By the end of this report, we will have shown ...
+Ultimately, our findings will depict how cyclones/hurricanes will play a role in determining happiness levels and the rates of climate awareness, which will convey the analysis of causation.
 
 
 # Data Description
