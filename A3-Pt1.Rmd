@@ -690,7 +690,7 @@ Join `aware_pop` and `covid_2020_match_country`, again only keep countries that 
 # YOUR CODE HERE
 aware_covid<-covid_2020_match_country|>
   inner_join(aware_pop)|>
-  mutate(covid_per_capita = total_cases / total_population)
+  mutate(cases_per_capita = total_cases / total_population)
 aware_covid
 ```
 
