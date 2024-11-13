@@ -640,9 +640,16 @@ Now we can join! Use a [join](https://dplyr.tidyverse.org/reference/mutate-joins
 ```{r aware_pop, error=TRUE}
 # YOUR CODE HERE
 aware_pop<-aware_fixed_country_match|>
+<<<<<<< HEAD
+    inner_join(pop_data)|>
+  rename(total_population = SP.POP.TOTL)|>
+      select(country, total_population, aware_no, aware_alittle, aware_moderate, aware_alot, aware_refuse)
+
+=======
   inner_join(pop_data)|>
   rename(total_population = SP.POP.TOTL)|>
   select(country, total_population, aware_no, aware_alittle, aware_moderate, aware_alot, aware_refuse)
+>>>>>>> 48afc3e679eae13380f991bc578f72c4a46d45ae
 aware_pop
 ```
 
@@ -758,7 +765,6 @@ happiness <- happy |>
   group_by(country)|>
   slice_max(year) 
 happiness
-#TEST
 ```
 
 ```{r}
