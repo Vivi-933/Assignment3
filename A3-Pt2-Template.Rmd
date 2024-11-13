@@ -6,7 +6,6 @@ output: pdf_document
 ---
 
 List your group members, including their student numbers, here:
-<<<<<<< Updated upstream
 
 - Joshua Goudy (169031329)
 - Melissa Thambiaiah (169060509)
