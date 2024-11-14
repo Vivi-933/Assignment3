@@ -88,7 +88,7 @@ Explain how any combinations of data were performed. Explain what kind of join w
 
 To achieve our goals, we explored the data by...
 
-We explored many aspects of the data, but will demonstrate three. These are <<The correlation between HAPPINESS & CYCLONES>>, <<The correlation between CYCLONES & CLIMATE AWARENESS>>, and <<The correlation between CLIMATE AWARENESS & HAPPINESS>>
+We explored many aspects of the data, but will demonstrate three. These are the correlation between happiness & cyclones/hurricanes hitting a country, the correlation between cyclones/hurricanes hitting a country and how aware its people are of climate change, and the correlation between how aware the people of a country are and how happy those people are.
 
 The first aspect that we found interesting is shown in \@ref(fig:insight1). The insight should be specific to the data shown, not a general statement beyond the data (leave that for the conclusion).
 
