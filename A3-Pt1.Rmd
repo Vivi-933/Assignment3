@@ -692,7 +692,7 @@ Join `aware_pop` and `covid_2020_match_country`, again only keep countries that 
 ```{r aware_covid, error=TRUE}
 # YOUR CODE HERE
 aware_covid<-aware_pop|>
-  inner_join(covid_2020_match_country, by = join_by(country))|>
+  inner_join(covid_2020_match_country, by ='country')|>
   mutate(covid_per_capita = total_cases / total_population)
 aware_covid
 ```
