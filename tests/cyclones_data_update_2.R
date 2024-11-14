@@ -8,7 +8,7 @@ test = list(
       code = {
         testthat::expect_equal(
             ncol(cyclones_data_update_2),
-            31,
+            ncol(cyclones_data_update_1) + 1,
             info = "FEEDBACK: Incorrect number of columns. Only one new column should be added."
         )
 

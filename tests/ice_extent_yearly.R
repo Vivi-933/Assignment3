@@ -15,7 +15,7 @@ test = list(
         ))
 
         testthat::expect_equal(
-            example_df,
+            ungroup(example_df),
             head(ice_extent_yearly),
             info = "FEEDBACK: Your submission does not match the example data frame given."
         )
