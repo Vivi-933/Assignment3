@@ -637,12 +637,7 @@ Now we can join! Use a [join](https://dplyr.tidyverse.org/reference/mutate-joins
 ```{r aware_pop, error=TRUE}
 # YOUR CODE HERE
 aware_pop<-aware_fixed_country_match|>
-
-    inner_join(pop_data)|>
-  rename(total_population = SP.POP.TOTL)|>
-      select(country, total_population, aware_no, aware_alittle, aware_moderate, aware_alot, aware_refuse)
-
-  inner_join(pop_data)|>
+  inner_join(pop_data, by = 'country')|>
   rename(total_population = SP.POP.TOTL)|>
   select(country, total_population, aware_no, aware_alittle, aware_moderate, aware_alot, aware_refuse)
 aware_pop
@@ -691,9 +686,9 @@ Join `aware_pop` and `covid_2020_match_country`, again only keep countries that 
 
 ```{r aware_covid, error=TRUE}
 # YOUR CODE HERE
-aware_covid<-aware_pop|>
-  inner_join(covid_2020_match_country, by ='country')|>
-  mutate(covid_per_capita = total_cases / total_population)
+aware_covid <- inner_join(aware_pop, covid_2020_match_country, by = 'country')|>
+  mutate(covid_per_capita = total_cases / total_population)|>
+  filter(!is.na(aware_refuse), !is.na(total_cases))
 aware_covid
 ```
 
