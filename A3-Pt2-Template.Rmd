@@ -92,7 +92,7 @@ We explored many aspects of the data, but will demonstrate three. These are the 
 
 The first aspect that we found interesting is shown in \@ref(fig:insight1). The insight should be specific to the data shown, not a general statement beyond the data (leave that for the conclusion).
 
-```{r insight1, fig.cap="This is a figure caption that you will need to change in order to get good marks in the visualization rubric items."}
+```{r insight1, fig.cap="the correlation between happiness & cyclones/hurricanes hitting a country"}
 # This is an example of how you can control figures and captions in
 # an R chunk. Note that you can reference figures using:
 # \@ref(fig:insight1), where "insight1" is the label of this code
@@ -111,7 +111,7 @@ This insight is supported by the summary statistics in table \@ref(tab:summary_s
 
 The next insight that we found is shown in \@ref(fig:insight2).
 
-```{r insight2, fig.height=4, fig.width=6, fig.cap="This is a figure caption that you will need to change in order to get good marks in the visualization rubric items."}
+```{r insight2, fig.height=4, fig.width=6, fig.cap="the correlation between cyclones/hurricanes hitting a country and how aware its people are of climate change"}
 # This figure will have a height of 4 and a width of 6.
 # Feel free to change this, and to apply different sizes
 # to the other figures you create.
@@ -119,7 +119,7 @@ The next insight that we found is shown in \@ref(fig:insight2).
 
 Finally, \@ref(fig:insight3) shows ...
 
-```{r insight3, fig.height=4, fig.width=6, fig.cap="This is a figure caption that you will need to change in order to get good marks in the visualization rubric items."}
+```{r insight3, fig.height=4, fig.width=6, fig.cap="the correlation between how aware the people of a country are and how happy those people are"}
 ```
 
 # Conclusion and Future Work
