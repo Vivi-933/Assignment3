@@ -120,20 +120,11 @@ We explored many aspects of the data, but will demonstrate three. These are the 
 
 The first aspect that we found interesting is shown in \@ref(fig:insight1). The insight should be specific to the data shown, not a general statement beyond the data (leave that for the conclusion).
 
-```{r}
-cor(comb$aware_score, comb$life_ladder)
 
-```
-
-```{r insight1, fig.cap="the correlation between happiness & cyclones/hurricanes hitting a country"}
-# This is an example of how you can control figures and captions in
-# an R chunk. Note that you can reference figures using:
-# \@ref(fig:insight1), where "insight1" is the label of this code
-# chunk (the first bit of text after the "r" in "```{r label, options...}")
+```{r insight1, fig.cap="the correlation between how aware people are of climate change and how happy they are"}
 comb <- inner_join(climate_awareness_data, happiness_data, by = 'country')
-
+rel_stat<-cor(comb$aware_score, comb$life_ladder)
 canada <- comb |> filter(country == "Canada")
-
 ggplot(comb, mapping = aes(y = life_ladder, x = aware_score))+
   geom_point(mapping = aes(colour = continent)) +
   geom_smooth(method = 'lm', formula = 'y~x') +
@@ -150,11 +141,6 @@ ggplot(comb, mapping = aes(y = life_ladder, x = aware_score))+
 This insight is supported by the summary statistics in table \@ref(tab:summary_stats)
 
 ```{r summary_stats}
-# Calculate the relevant summary statistics here.
-# Note that the "kable" function in the "knitr" package
-# is convenient for making nice tables. Other packages can
-# do much fancier things with tables, but keep in mind that
-# the insights should be the star, not the formatting.
 summary_stats<-comb|>
   mutate("Country" = country, 'Aware Rating' = aware_score, "Life Ladder" = life_ladder, 'Continent' = continent)|>
   select(Country, Continent, 'Aware Rating', 'Life Ladder')|>
@@ -168,7 +154,7 @@ kable(
 
 The next insight that we found is shown in \@ref(fig:insight2).
 
-```{r insight2, fig.height=4, fig.width=6, fig.cap="the correlation between how aware people are of climate change and how happy they are"}
+```{r insight2, fig.height=4, fig.width=6, fig.cap="the correlation between happiness & cyclones/hurricanes hitting a country"}
 # This figure will have a height of 4 and a width of 6.
 # Feel free to change this, and to apply different sizes
 # to the other figures you create.
