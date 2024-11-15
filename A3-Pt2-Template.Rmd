@@ -85,7 +85,7 @@ climate_awareness_data_1 <- climate_awareness_data_0|>
       ), aware_score = (aware_alittle + (aware_moderate *2) + (aware_alot*3))/300
     )
 continent_data<-read_parquet('covid_2020.parquet')
-climate_awareness_data <- left_join(climate_awareness_data, continent_data, by = 'country')|>
+climate_awareness_data <- left_join(climate_awareness_data_1, continent_data, by = 'country')|>
   select(country, aware_score, continent, total_cases)
   
 climate_awareness_data
