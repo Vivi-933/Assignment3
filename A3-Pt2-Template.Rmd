@@ -125,6 +125,10 @@ The first aspect that we found interesting is shown in \@ref(fig:insight1). The 
 # an R chunk. Note that you can reference figures using:
 # \@ref(fig:insight1), where "insight1" is the label of this code
 # chunk (the first bit of text after the "r" in "```{r label, options...}")
+comb <- inner_join(climate_awareness_data, happiness_data, by = 'country')
+ggplot(comb)+
+  geom_point(mapping = aes(x = life_ladder, y = aware_score))+
+  geom_smooth(mapping = aes(x = life_ladder, y = aware_score))
 ```
 
 This insight is supported by the summary statistics in table \@ref(tab:summary_stats)
