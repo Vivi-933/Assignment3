@@ -67,7 +67,7 @@ In order to clean/tidy the data, we separated each different type of data entry 
 
 ```{r load_data2}
 climate_awareness_data_0 <- read_parquet('climate_awareness.parquet')
-climate_awareness_data <- climate_awareness_data_0|>
+climate_awareness_data_1 <- climate_awareness_data_0|>
       mutate(country = str_replace_all(country, '\\.', ' '), 
       country = case_when(
         country == 'Bolivia (Plurinational State of)'~'Bolivia',
@@ -84,6 +84,10 @@ climate_awareness_data <- climate_awareness_data_0|>
         .default = country
       ), aware_score = (aware_alittle + (aware_moderate *2) + (aware_alot*3))/300
     )
+continent_data<-read_parquet('covid_2020.parquet')
+climate_awareness_data <- left_join(climate_awareness_data, continent_data, by = 'country')|>
+  select(country, aware_score, continent, total_cases)
+  
 climate_awareness_data
 ```
 
@@ -126,9 +130,20 @@ The first aspect that we found interesting is shown in \@ref(fig:insight1). The 
 # \@ref(fig:insight1), where "insight1" is the label of this code
 # chunk (the first bit of text after the "r" in "```{r label, options...}")
 comb <- inner_join(climate_awareness_data, happiness_data, by = 'country')
-ggplot(comb)+
-  geom_point(mapping = aes(x = life_ladder, y = aware_score))+
-  geom_smooth(mapping = aes(x = life_ladder, y = aware_score))
+ggplot(comb, mapping = aes(y = life_ladder, x = aware_score))+
+  geom_point(mapping = aes(colour = continent)) +
+  geom_smooth(method = 'lm', formula = 'y~x') +
+  theme(plot.title = element_text(hjust = 0.5))+
+  labs(
+        x = "Climate Awareness", y = "Life Ladder",
+        title = "Climate Awareness vs. Happiness of a Country"
+    )
+
+```
+
+```{r}
+cor(comb$aware_score, comb$life_ladder)
+
 ```
 
 This insight is supported by the summary statistics in table \@ref(tab:summary_stats)
