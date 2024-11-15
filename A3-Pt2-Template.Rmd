@@ -130,14 +130,24 @@ The first aspect that we found interesting is shown in \@ref(fig:insight1). The 
 # \@ref(fig:insight1), where "insight1" is the label of this code
 # chunk (the first bit of text after the "r" in "```{r label, options...}")
 comb <- inner_join(climate_awareness_data, happiness_data, by = 'country')
+
+canada <- comb |> filter(country == "Canada")
+
 ggplot(comb, mapping = aes(y = life_ladder, x = aware_score))+
   geom_point(mapping = aes(colour = continent)) +
   geom_smooth(method = 'lm', formula = 'y~x') +
   theme(plot.title = element_text(hjust = 0.5))+
   labs(
         x = "Climate Awareness", y = "Life Ladder",
-        title = "Climate Awareness vs. Happiness of a Country"
-    )
+        title = "Climate Awareness vs. Happiness of a Country",
+        caption = "Correlation factor = 0.5072062"
+    ) +
+  geom_label_repel(data = canada, mapping =aes(label = country), color = "red") +
+  geom_point(data = canada, fill = 'white', color = "red", shape = 21)
+```
+
+```{r}
+cor(comb$aware_score, comb$life_ladder)
 
 ```
 
