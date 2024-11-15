@@ -184,6 +184,7 @@ The easiest way is to use Rmd's [footnote](https://bookdown.org/yihui/rmarkdown/
 [^1]: See the source view to see this footnote
 
 [^2]: The relevance to the insight is ... . From \<<name of source and name of article>\>, published on \<<date>\>, url: \<<link to page>\>
+test
 
 Alternatively, you could make a list of citations with their main arguments and why they're relevent to your insights, methods, etc.
 
