@@ -7,14 +7,14 @@ output: pdf_document
 
 List your group members, including their student numbers, here:
 
-- Joshua Goudy (169031329)
-- Melissa Thambiaiah (169060509)
-- Emaan Umar (169108097)
-- Joseph Egbo (143037470)
+-   Joshua Goudy (169031329)
+-   Melissa Thambiaiah (169060509)
+-   Emaan Umar (169108097)
+-   Joseph Egbo (143037470)
 
 Ideas: Cyclones, climate change, and happiness
 
-- Does a cyclone hitting a country increase climate awareness and decrease happiness
+-   Does a cyclone hitting a country increase climate awareness and decrease happiness
 
 ```{r setup, include=FALSE}
 # echo = FALSE will set the Rmd to *not* show the R code. Don't change this.
@@ -36,15 +36,13 @@ You will only submit the PDF version of this document. To knit to PDF, you'll ne
 
 Ideas: How does a cyclone hitting a country affect the climate awareness and overall happiness.
 
-
 # Introduction
 
-In this report, we are going to delve into the correlation between cyclones, climate awareness and the way in which happiness levels fluctuate based on the occurrences of cyclones. To establish a sense of importance on these topics, let's dive into the history of Hurricane Katrina. Making its mark in American history, there is empirical evidence that reveals how Hurricane Katrina has dictated happiness levels, while promoting the significance of climate awareness. 
-         
-Moreover, we are applying exploratory techniques by visualizing the graphical representations of these data sets in order to conduct an effective comparison between the information sets. 
+In this report, we are going to delve into the correlation between cyclones, climate awareness and the way in which happiness levels fluctuate based on the occurrences of cyclones. To establish a sense of importance on these topics, let's dive into the history of Hurricane Katrina. Making its mark in American history, there is empirical evidence that reveals how Hurricane Katrina has dictated happiness levels, while promoting the significance of climate awareness.
+
+Moreover, we are applying exploratory techniques by visualizing the graphical representations of these data sets in order to conduct an effective comparison between the information sets.
 
 Ultimately, our findings will depict how cyclones/hurricanes will play a role in determining happiness levels and the rates of climate awareness, which will convey the analysis of causation.
-
 
 # Data Description
 
@@ -61,7 +59,6 @@ cyclone_data
 The data comes from NOAA Cyclone/Hurricane Data contains record of tropical storms over the past 173 years.
 
 In order to clean/tidy the data, we separated each different type of data entry into a unique column, filtered out irrelevant data entries, converted the location data to a readable format, and classified the storms.
-
 
 ## Climate Awareness Data
 
@@ -91,7 +88,6 @@ climate_awareness_data <- left_join(climate_awareness_data_1, continent_data, by
 climate_awareness_data
 ```
 
-
 The data come from 2022 Climate Change Opinion Survey and detail climate change opinion records how aware the population of various countries are about climate change, going forward this data set will be referred to as 'climate awareness'.
 
 In order to clean the data, we type of data entry into a unique column, filtered out irrelevant data entries, and removed outdated entries.
@@ -110,11 +106,9 @@ The data come from World Happiness Report Score (from 2023 report) and records v
 
 In order to clean/tidy the data, we separated each different removed repeated data, filtered out countries without a lifeladder score, and filtered out the outdated entries.
 
-
 ## Combining the Data
 
 Explain how any combinations of data were performed. Explain what kind of join was needed, whether columns had to be modified (for example, matching "country" names.)
-
 
 # Exploratory Data Analysis
 
@@ -181,7 +175,7 @@ Finally, \@ref(fig:insight3) shows ...
 
 # Conclusion and Future Work
 
-Overall, we found <<general ideas>>.
+Overall, we found that there exists a strong correlation between the impact of cyclones/hurricanes on happiness levels and also between a country's awareness of climate data.
 
 A second paragraph about our findings.
 
@@ -189,11 +183,20 @@ The next steps in this analysis are...
 
 The limitations of this analysis are as follows. (Do not simply list potential issues with sampling, but relate them to your analysis and how they affect your conclusions. An honest and complete acknowledgement of the limitations makes the analysis more trustworthy.)
 
+- CLimate awarenes sis not avaioable for more than one year
+- Cyclones dont have the countries in which they started
+- Latitude and longitude are complex 
+- 
+
 # References
 
 I am not strict about MLA or APA style or anything like that. For this report, I would much rather have your citations be easy to match to your insights.
 
-The easiest way is to use Rmd's [footnote](https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#inline-formatting) syntax. This will put a number beside the word where the footnote appears, and the full text of the footnote at the bottom of the page (pdf) or end of the document (html). The syntax is:^[See the source view to see this footnote], where I suggest that you put in something like this^[The relevance to the insight is ... . From <<name of source and name of article>>, published on <<date>>, url: <<link to page>>] to make references for this assignment.
+The easiest way is to use Rmd's [footnote](https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#inline-formatting) syntax. This will put a number beside the word where the footnote appears, and the full text of the footnote at the bottom of the page (pdf) or end of the document (html). The syntax is:[^1], where I suggest that you put in something like this[^2] to make references for this assignment.
+
+[^1]: See the source view to see this footnote
+
+[^2]: The relevance to the insight is ... . From \<<name of source and name of article>\>, published on \<<date>\>, url: \<<link to page>\>
 
 Alternatively, you could make a list of citations with their main arguments and why they're relevent to your insights, methods, etc.
 
