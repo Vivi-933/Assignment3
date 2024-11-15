@@ -25,6 +25,7 @@ knitr::opts_chunk$set(echo = FALSE, message = FALSE, fig.width = 6)
 # DO NOT PUT "install.packages()" IN AN RMD FILE!!!
 library(tidyverse)
 library(arrow)
+library(ggmap)
 ```
 
 Note that all of the code is *hidden* by default. This file will be graded based on the insights, not the code.
@@ -50,7 +51,11 @@ Ultimately, our findings will depict how cyclones/hurricanes will play a role in
 ## Cyclones Data
 
 ```{r load_data1}
-cyclone_data <- read_parquet('cyclones_data.parquet')
+cyclone_data_0 <- read_parquet('cyclones_data.parquet')
+cyclone_data <- cyclone_data_0|>
+  select(Basin, Name, status, NameYear, lat, lon, max_wind, category)|>
+  filter(category == '1'|category == '2'|category=='3'|category=='4'|category=='5')
+cyclone_data
 ```
 
 The data comes from NOAA Cyclone/Hurricane Data contains record of tropical storms over the past 173 years.
@@ -61,8 +66,27 @@ In order to clean/tidy the data, we separated each different type of data entry 
 ## Climate Awareness Data
 
 ```{r load_data2}
-climate_awareness_data <- read_parquet('climate_awareness.parquet')
+climate_awareness_data_0 <- read_parquet('climate_awareness.parquet')
+climate_awareness_data <- climate_awareness_data_0|>
+      mutate(country = str_replace_all(country, '\\.', ' '), 
+      country = case_when(
+        country == 'Bolivia (Plurinational State of)'~'Bolivia',
+        country == 'Congo (Democratic Republic of the)' ~ "Congo, Dem. Rep.",
+        country == 'Egypt' ~ "Egypt, Arab Rep.",
+        country == 'Hong Kong'~'Hong Kong SAR, China',
+        country == "Lao People's Democratic Republic"~'Lao PDR',
+        country == 'Slovakia'~'Slovak Republic',
+        country == 'North MAcedonia'~'North Macedonia',
+        country == 'South Korea'~'Korea, Rep.',
+        country == 'Turkey'~'Turkiye',
+        country == 'Vietnam'~'Viet Nam',
+        country == 'Yemen'~'Yemen, Rep.',
+        .default = country
+      ), aware_score = (aware_alittle + (aware_moderate *2) + (aware_alot*3))/300
+    )
+climate_awareness_data
 ```
+
 
 The data come from 2022 Climate Change Opinion Survey and detail climate change opinion records how aware the population of various countries are about climate change, going forward this data set will be referred to as 'climate awareness'.
 
@@ -71,7 +95,11 @@ In order to clean the data, we type of data entry into a unique column, filtered
 ## Happiness Data
 
 ```{r load_data3}
-happiness_data <- read_parquet('happiness.parquet')
+happiness_data_0  <- read_parquet('happiness.parquet')
+happiness_data<-happiness_data_0|>
+  select(country, year, life_ladder)|>
+  mutate(life_ladder = life_ladder * 0.1)
+happiness_data
 ```
 
 The data come from World Happiness Report Score (from 2023 report) and records various statistics about countries that are believed to impact the overall happiness of a country and gives them an overall happiness score, going forward this data set will be referred to as 'happiness'.
