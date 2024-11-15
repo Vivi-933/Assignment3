@@ -26,7 +26,7 @@ knitr::opts_chunk$set(echo = FALSE, message = FALSE, fig.width = 6)
 library(tidyverse)
 library(arrow)
 library(ggrepel)
-library(kable)
+library(knitr)
 ```
 
 Note that all of the code is *hidden* by default. This file will be graded based on the insights, not the code.
@@ -157,16 +157,11 @@ This insight is supported by the summary statistics in table \@ref(tab:summary_s
 # is convenient for making nice tables. Other packages can
 # do much fancier things with tables, but keep in mind that
 # the insights should be the star, not the formatting.
+summary_stats<-comb|>
+  mutate("Country" = country, 'Aware Rating' = aware_score, "Life Ladder" = life_ladder, 'Continent' = continent)|>
+  select(Country, Continent, 'Aware Rating', 'Life Ladder')
 kable(
-  comb,
-  row.names = 'Country',
-  col.names = NA,
-  align,
-  caption = opts_current$get("tab.cap"),
-  label = NULL,
-  format.args = list(),
-  escape = TRUE,
-  ...
+  summary_stats
 )
 ```
 
