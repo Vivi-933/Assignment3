@@ -7,14 +7,14 @@ output: pdf_document
 
 List your group members, including their student numbers, here:
 
-- Joshua Goudy (169031329)
-- Melissa Thambiaiah (169060509)
-- Emaan Umar (169108097)
-- Joseph Egbo (143037470)
+-   Joshua Goudy (169031329)
+-   Melissa Thambiaiah (169060509)
+-   Emaan Umar (169108097)
+-   Joseph Egbo (143037470)
 
 Ideas: Cyclones, climate change, and happiness
 
-- Does a cyclone hitting a country increase climate awareness and decrease happiness
+-   Does a cyclone hitting a country increase climate awareness and decrease happiness
 
 ```{r setup, include=FALSE}
 # echo = FALSE will set the Rmd to *not* show the R code. Don't change this.
@@ -25,7 +25,8 @@ knitr::opts_chunk$set(echo = FALSE, message = FALSE, fig.width = 6)
 # DO NOT PUT "install.packages()" IN AN RMD FILE!!!
 library(tidyverse)
 library(arrow)
-library(ggmap)
+library(ggrepel)
+library(kable)
 ```
 
 Note that all of the code is *hidden* by default. This file will be graded based on the insights, not the code.
@@ -36,15 +37,13 @@ You will only submit the PDF version of this document. To knit to PDF, you'll ne
 
 Ideas: How does a cyclone hitting a country affect the climate awareness and overall happiness.
 
-
 # Introduction
 
-In this report, we are going to delve into the correlation between cyclones, climate awareness and the way in which happiness levels fluctuate based on the occurrences of cyclones. To establish a sense of importance on these topics, let's dive into the history of Hurricane Katrina. Making its mark in American history, there is empirical evidence that reveals how Hurricane Katrina has dictated happiness levels, while promoting the significance of climate awareness. 
-         
-Moreover, we are applying exploratory techniques by visualizing the graphical representations of these data sets in order to conduct an effective comparison between the information sets. 
+In this report, we are going to delve into the correlation between cyclones, climate awareness and the way in which happiness levels fluctuate based on the occurrences of cyclones. To establish a sense of importance on these topics, let's dive into the history of Hurricane Katrina. Making its mark in American history, there is empirical evidence that reveals how Hurricane Katrina has dictated happiness levels, while promoting the significance of climate awareness.
+
+Moreover, we are applying exploratory techniques by visualizing the graphical representations of these data sets in order to conduct an effective comparison between the information sets.
 
 Ultimately, our findings will depict how cyclones/hurricanes will play a role in determining happiness levels and the rates of climate awareness, which will convey the analysis of causation.
-
 
 # Data Description
 
@@ -61,7 +60,6 @@ cyclone_data
 The data comes from NOAA Cyclone/Hurricane Data contains record of tropical storms over the past 173 years.
 
 In order to clean/tidy the data, we separated each different type of data entry into a unique column, filtered out irrelevant data entries, converted the location data to a readable format, and classified the storms.
-
 
 ## Climate Awareness Data
 
@@ -91,7 +89,6 @@ climate_awareness_data <- left_join(climate_awareness_data_1, continent_data, by
 climate_awareness_data
 ```
 
-
 The data come from 2022 Climate Change Opinion Survey and detail climate change opinion records how aware the population of various countries are about climate change, going forward this data set will be referred to as 'climate awareness'.
 
 In order to clean the data, we type of data entry into a unique column, filtered out irrelevant data entries, and removed outdated entries.
@@ -110,11 +107,9 @@ The data come from World Happiness Report Score (from 2023 report) and records v
 
 In order to clean/tidy the data, we separated each different removed repeated data, filtered out countries without a lifeladder score, and filtered out the outdated entries.
 
-
 ## Combining the Data
 
 Explain how any combinations of data were performed. Explain what kind of join was needed, whether columns had to be modified (for example, matching "country" names.)
-
 
 # Exploratory Data Analysis
 
@@ -123,6 +118,10 @@ To achieve our goals, we explored the data by...
 We explored many aspects of the data, but will demonstrate three. These are the correlation between happiness & cyclones/hurricanes hitting a country, the correlation between cyclones/hurricanes hitting a country and how aware its people are of climate change, and the correlation between how aware the people of a country are and how happy those people are.
 
 The first aspect that we found interesting is shown in \@ref(fig:insight1). The insight should be specific to the data shown, not a general statement beyond the data (leave that for the conclusion).
+```{r}
+cor(comb$aware_score, comb$life_ladder)
+
+```
 
 ```{r insight1, fig.cap="the correlation between happiness & cyclones/hurricanes hitting a country"}
 # This is an example of how you can control figures and captions in
@@ -142,19 +141,13 @@ ggplot(comb, mapping = aes(y = life_ladder, x = aware_score))+
         title = "Climate Awareness vs. Happiness of a Country",
         caption = "Correlation factor = 0.5072062"
     ) +
-  geom_label_repel(data = canada, mapping =aes(label = country), color = "red") +
-  geom_point(data = canada, fill = 'white', color = "red", shape = 21)
+  geom_label_repel(data = canada, mapping = aes(label = country), color = "red") +
+  geom_point(data = canada, shape = '*', color = "red", size = 6)
 ```
 
-```{r}
-cor(comb$aware_score, comb$life_ladder)
 
-```
 
-```{r}
-cor(comb$aware_score, comb$life_ladder)
 
-```
 
 This insight is supported by the summary statistics in table \@ref(tab:summary_stats)
 
@@ -164,11 +157,22 @@ This insight is supported by the summary statistics in table \@ref(tab:summary_s
 # is convenient for making nice tables. Other packages can
 # do much fancier things with tables, but keep in mind that
 # the insights should be the star, not the formatting.
+kable(
+  comb,
+  row.names = 'Country',
+  col.names = NA,
+  align,
+  caption = opts_current$get("tab.cap"),
+  label = NULL,
+  format.args = list(),
+  escape = TRUE,
+  ...
+)
 ```
 
 The next insight that we found is shown in \@ref(fig:insight2).
 
-```{r insight2, fig.height=4, fig.width=6, fig.cap="the correlation between cyclones/hurricanes hitting a country and how aware its people are of climate change"}
+```{r insight2, fig.height=4, fig.width=6, fig.cap="the correlation between how aware people are of climate change and how happy they are"}
 # This figure will have a height of 4 and a width of 6.
 # Feel free to change this, and to apply different sizes
 # to the other figures you create.
@@ -181,7 +185,7 @@ Finally, \@ref(fig:insight3) shows ...
 
 # Conclusion and Future Work
 
-Overall, we found <<general ideas>>.
+Overall, we found \<<general ideas>\>.
 
 A second paragraph about our findings.
 
@@ -193,7 +197,11 @@ The limitations of this analysis are as follows. (Do not simply list potential i
 
 I am not strict about MLA or APA style or anything like that. For this report, I would much rather have your citations be easy to match to your insights.
 
-The easiest way is to use Rmd's [footnote](https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#inline-formatting) syntax. This will put a number beside the word where the footnote appears, and the full text of the footnote at the bottom of the page (pdf) or end of the document (html). The syntax is:^[See the source view to see this footnote], where I suggest that you put in something like this^[The relevance to the insight is ... . From <<name of source and name of article>>, published on <<date>>, url: <<link to page>>] to make references for this assignment.
+The easiest way is to use Rmd's [footnote](https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#inline-formatting) syntax. This will put a number beside the word where the footnote appears, and the full text of the footnote at the bottom of the page (pdf) or end of the document (html). The syntax is:[^1], where I suggest that you put in something like this[^2] to make references for this assignment.
+
+[^1]: See the source view to see this footnote
+
+[^2]: The relevance to the insight is ... . From \<<name of source and name of article>\>, published on \<<date>\>, url: \<<link to page>\>
 
 Alternatively, you could make a list of citations with their main arguments and why they're relevent to your insights, methods, etc.
 
