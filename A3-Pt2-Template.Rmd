@@ -122,7 +122,7 @@ ggplot(comb2) +
     title = 'Log GPD Per Capita vs. Happiness',
     y = 'Life Ladder',
     x = 'Log GDP Per Capita',
-    caption = 'Source: World Happiness Report (2023)'
+    caption = 'See footnote 1'
   ) +
   theme_light()
 ```
@@ -153,7 +153,7 @@ ggplot(cyc_with_cont)+
   labs(title='Hurricane Observations Count by Continent',
        y = 'Number of Observations',
        x = 'Continent',
-       caption = 'Source: U.S. Department of Commerce')+
+       caption = 'See footnote 2')+
   theme_light()
 
 ```
@@ -172,9 +172,7 @@ ggplot(comb, mapping = aes(y = life_ladder, x = aware_score))+
         x = "Climate Awareness", y = "Life Ladder",
         title = "Climate Awareness vs. Happiness of a Country",
         caption = "Correlation factor = 0.5072062
-Sources: World Happiness Report (2023)
-Data for Good at Meta and 
-The Yale Program on Climate Change Communication."
+see footnotes 3 and 4"
     ) +
   geom_label_repel(data = canada, mapping = aes(label = country), color = "red") +
   geom_point(data = canada, shape = '*', color = "red", size = 6)
@@ -209,7 +207,7 @@ I am not strict about MLA or APA style or anything like that. For this report, I
 
 The easiest way is to use Rmd's [footnote](https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#inline-formatting) syntax. This will put a number beside the word where the footnote appears, and the full text of the footnote at the bottom of the page (pdf) or end of the document (html). The syntax is:[^1], where I suggest that you put in something like this[^2] to make references for this assignment.
 
-[^1]: See the source view to see this footnote
+[^1]: U.S. Department of Commerce
 
 [^2]: The relevance to the insight is ... . From \<<name of source and name of article>\>, published on \<<date>\>, url: \<<link to page>\>
 test
