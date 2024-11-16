@@ -109,9 +109,14 @@ In order to clean/tidy the data, we separated each different removed repeated da
 
 # Exploratory Data Analysis
 
-To achieve our goals, we explored many insights of the data, but in this report we will emphasize three. The first insight consists of wealth and happiness. Our second insight is related to the frequency of hurricanes based on continents and to tie it all together, our final insight will be associated with happiness & climate awareness.
+    To achieve our goals, we explored many insights of the data, but in this report we will emphasize three. The first insight consists of wealth and happiness. Our second insight is related to the frequency of hurricanes based on continents and to tie it all together, our final insight will be associated with happiness & climate awareness.
 
-The first aspect that we found interesting is shown in The correlation between how aware people are of climate change and how happy they are. The insight should be specific to the data shown, not a general statement beyond the data (leave that for the conclusion).
+
+    The first aspect that we were interesting in inspecting was how the metric logarithmic GDP per capita relates to the life ladder metric in the happiness data set. In order to achieve this, we isolated the columns of countries, log_gdp_per_capita, and life ladder. To allow for analysis by continent, we utilized an inner-joined with the climate awareness data and happiness data. This granted us the ability to facet our graph by continent. The graphical representation that we believed best suited the data is a line chart, in which log_gdp_per_capita was placed on the x axis, whereas the y axis depicted the life ladder.
+
+    To summarize the findings from each continent, North America exists in a GDP range from 8 to 11, while having a life ladder happiness score that skews to the higher end of the life ladder range. South America, on the other hand, lacks data, therefore, making it difficult to draw a conclusion on its relationship between GDP and happiness. Moreover, we can make an educated assumption that South America may have poor data collection processes due to the fact that the average GDP pertaining to South American countries tends to be low.
+ 
+    Similarily, Oceania falls short in terms of identify patterns and trends associated with GDP per capita and life ladder happiness, however, this may be due to the inherent relative lack of countries in the continent of Oceania. Moving forward, the continent with the relatively lowest wealth and happiness levels is Africa. Skewing to the lower lefthand corner of the graph, our findings coincide with the socio-economic and economic inequality in Africa. Contrastingly, Europe skews to the upper righthand corner of the graph indicative of the fact that on average, most European countries have higher levels of wealth and happiness.Finally, Asia tends to lie in the middle of both ranges with distinct outliers. 
 
 
 ```{r insight1, fig.cap="The correlation between how aware people are of climate change and how happy they are"}
@@ -144,7 +149,7 @@ cyc_with_cont<-cyclone_data|>
   mutate('continent' = cont_find(lat, lon))
 ```
 
-The next insight that we found is shown in Hurricane Observations Count by Continent.
+    The next insight that we found is shown in Hurricane Observations Count by Continent. To create this graph, we first had to use the coordinates of latitude and longitude to correspond the general coordinates of the 6 continents excluding Antarctica. We did this by creating our own function in which multiple ifelse statements were implemented to create a column corresponding to the continents. This allowed us to create the bar graph which we ordered by frequency of hurricanes. From this bar graph, we can see that North America overwhelmingly has the highest amount of hurricanes due to its proximity to the Atlantic basin and the equator, based on its geographical placement. As a result of the ranges that we used for latitude and longitude, select countries lie between continents and resultantly, conclusions cannot be effectively drawn from them. 
 
 ```{r insight2, fig.height=4, fig.width=6, fig.cap="Number of Hurricane Observations by Continent"}
 ggplot(cyc_with_cont)+
@@ -159,7 +164,8 @@ ggplot(cyc_with_cont)+
 
 ```
 
-Finally, The correlation between how aware of climate change the people of a country are and how happy those people are shows ...
+    Finally, we will calculate the the correlation between climate change awareness and the life ladder scores of a country. This was completed using a summary statistic table in which we created an awareness score for countries to effectively compare it to happiness. The method is further explained in the insight regarding the table below the graph. We created a scatterplot in which the independent variable was climate awareness, and the dependent variable was life ladder. Moreover, we created a line of best fit for which we calculated the correlation coefficient to be 0.5072062, which indicates a strong correlation. Finally, we also colored the scatter plot by continents, which is visible in the legend, and emphasized Canada's placement which is skewed to the higher end of climate awawareness and happiness. 
+
 
 ```{r insight3, fig.height=4, fig.width=6, fig.cap="The correlation between how aware of climate change the people of a country are and how happy those people are"}
 comb <- inner_join(climate_awareness_data, happiness_data, by = 'country')
@@ -179,7 +185,8 @@ see footnotes 3 and 4"
   geom_point(data = canada, shape = '*', color = "red", size = 6)
 ```
 
-    This insight is supported by the summary statistics in table \@ref(tab:summary_stats). In this table, we calculated the awareness scores of countries by attributing a weight to each level of awareness, such that if everyone voted they are not aware, the score would be a 0. Moreover, if everyone voted that they are a little aware, then score would be a 0.33. If everyone voted that they are moderately aware, the score would be a 0.66. Finally, if everyone voted that they were very aware, the score would be a 1. This allows for the relationship between awareness and life ladder to be conveyed in an effective manner, allowing for a correlation to be identified. We also chose to color countries by continents in order to further analyze trends associated with countries. 
+       This insight is supported by the summary statistics in table. In this table, we calculated the awareness scores of countries by attributing a weight to each level of awareness, such that if everyone voted they are not aware, the score would be a 0. Moreover, if everyone voted that they are a little aware, then score would be a 0.33. If everyone voted that they are moderately aware, the score would be a 0.66. Finally, if everyone voted that they were very aware, the score would be a 1. This allows for the relationship between awareness and life ladder to be conveyed in an effective manner, allowing for a correlation to be identified. We also chose to color countries by continents in order to further analyze trends associated with countries.
+ 
 
 
 ```{r summary_stats}
@@ -195,27 +202,20 @@ kable(
 ```
 # Conclusion and Future Work
 
-    Through the graphical representation identified within our first insight, we were able to identify three specific points that convey the relationship between happiness levels and climate awareness. The three points are as follows...
-    1. Correlation: As visible, the correlation factor is 0.5072062. When it comes to social sciences, a correlation factor greater than 0.35 is considered a strong correlation, and a factor of 0.5 is considered very strong. However, this may defer between contrasting areas of study. From this we can conclude that correlation does not directly imply causation, thus we suspect that wealth of a country may be a third factor that influences both climate awareness and happiness levels. Ultimately, the conclusion we can draw from this is that if a country exhibits a high climate awareness score, there is evidence that indicates the education and literacy rate of the the country is high. This connects to happiness because countries that have social services and an education system are wealthier, therefore they are inherently happier, having a higher sense of knowledge of. 
+    Through the graphical representation identified within each of our insights, we were able to identify three specific points that convey the relationship between happiness levels, climate awareness, and cyclones. The points are as follows regarsing the overall conclusions, trends and limation in our report.
+   
+    As visible, the correlation factor is 0.5072062. When it comes to social sciences, a correlation factor greater than 0.35 is considered a strong correlation, and a factor of 0.5 is considered very strong. However, this may defer between contrasting areas of study. From this we can conclude that correlation does not directly imply causation, thus we suspect that the wealth of a country, which we analyzed in the first insight, may be a third factor that influences both climate awareness and happiness levels. This can be interpreted as the reason why the correlation between happiness and climate awareness is strong. Ultimately, the conclusion we can draw from this is that if a country exhibits a high climate awareness score, there is evidence that indicates the education and literacy rate of the the country is relatively high due to having a higher average wealth per population. This connects to happiness because countries that have social services and an education system are wealthier, therefore they may be inherently happier, having greater knowledge of climate awareness.  
 
-    2. Identifiable Trend: Evidently, a trend that we may notice among continents is that Asia and Africa tend to be lower on the life ladder, and have a lower score of climate awareness.
-
-    The limitations of this analysis are as follows. (Do not simply list potential issues with sampling, but relate them to your analysis and how they affect your conclusions. An honest and complete acknowledgement of the limitations makes the analysis more trustworthy.)
-
-- Longitude and latitude - Continents and longitude and latitude, assume that continents were shaped as a square, no easy way to convert them into countries)
-- Climate awareness only exists for one year, 2022
+     Evidently, a trend that we may notice among continents is that Asia and Africa tend to be lower on the life ladder, and have a lower score of climate awareness. While continents such as North America and Europe tend to be higher in both aspects, this supports our previous correlation as said continents tend to have higher GDP levels. Through our second insight, it can be inferred that the frequency of cyclones affecting a continent does not have any major correlation to happiness levels and climate awareness. If cyclones affected happiness and climate awareness, North America would be the lowest on both of these metrics because it receives the most amount of cyclones, which does not agree with our first and third insights.
+   
+    Because of the methods we used to organize countries into continents for the cyclone data, we were unable to establish strict boundaries based on the longtiude and latitude as continents are not simple shapes, rather they inhibit complex borders. We were also unable to properly analyze the correlation between cyclones and climate awareness as well as happiness levels due to our inability to cretae a function that would allow us to summarize the frequency of cyclones. All data sets lacked data pertaining to speicifc years, corresponding to the data points. This heightened the difficulty to pinpoint any correlations over time.
 
 # References
 
-I am not strict about MLA or APA style or anything like that. For this report, I would much rather have your citations be easy to match to your insights.
-
-The easiest way is to use Rmd's [footnote](https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#inline-formatting) syntax. This will put a number beside the word where the footnote appears, and the full text of the footnote at the bottom of the page (pdf) or end of the document (html). The syntax is:[^1], where I suggest that you put in something like this[^2] to make references for this assignment.
 
 [^1]: U.S. Department of Commerce
-
-[^2]: The relevance to the insight is ... . From \<<name of source and name of article>\>, published on \<<date>\>, url: \<<link to page>\>
-test
-
-Alternatively, you could make a list of citations with their main arguments and why they're relevent to your insights, methods, etc.
-
-The link above also references "bibtex" files. These are also extremely convenient, but have a steep learning curve and they make it difficult to tie them to an insight. If you use bibtext, then make sure that you provide a sentence to describe the source and it's relevance when you cite it - don't just add citations to the end of a sentence (this is common practice in academia, but I want to know that your citations are directly relevant for this assignmnet).
+[^2]: NOAA Cyclone/Hurricane Data
+[^3]: 2022 Climate Change Opinion Survey
+[^4]: World Happiness Report Score (from 2023 report)
+[^5]: The relevance to the insights is from \<<Physical Map of the World Continents - Nations Online Project>\>, url: \<<https://www.nationsonline.org/oneworld/continents_map.htm>\>
+[^6]: The conclusions and introductions were drawn from \<<The Cultural Visualization of Hurricane Katrina>\>, url: \<<https://www.rochester.edu/in_visible_culture/Issue_16/articles/mann%20and%20pass/mann_pass_intro.html\>
