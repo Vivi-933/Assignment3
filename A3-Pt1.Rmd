@@ -227,6 +227,8 @@ cyclones_data_update_1
 . = ottr::check("tests/convert_latlon.R")
 ```
 
+
+
 ### Extract Dates
 
 We have a few more tasks. First, create a [datetime](https://fralfaro.github.io/r4ds/datetimes.html) object using the `make_datetime()` function so that R knows how to plot the times. Label the new column as "`date`".
@@ -234,7 +236,7 @@ We have a few more tasks. First, create a [datetime](https://fralfaro.github.io/
 To do this, you must choose whether to use `ObservYear` or `NameYear`.
 
 ```{r cyclones_data_update_2, error=TRUE}
-cyclones_data_update_2 <- cyclones_data_update_1 |>
+cyclones_data_update_2 <- cyclones_data_update_1|>
     mutate(
       date = make_datetime(year = ObservYear, month = Month, day = Day, hour = Hour, min = Minute)
     )

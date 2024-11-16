@@ -7,10 +7,10 @@ output: pdf_document
 
 List your group members, including their student numbers, here:
 
--   Joshua Goudy (169031329)
--   Melissa Thambiaiah (169060509)
--   Emaan Umar (169108097)
--   Joseph Egbo (143037470)
+-   Egbo Joseph (143037470)
+-   Goudy Joshua (169031329)
+-   Thambiaiah Melissa (169060509)
+-   Umar Emaan (169108097)
 
 
 ```{r setup, include=FALSE}
