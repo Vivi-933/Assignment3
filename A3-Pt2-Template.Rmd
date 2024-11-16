@@ -31,15 +31,20 @@ library(tinytex)
 
 # Abstract
 
-Ideas: How does a cyclone hitting a country affect the climate awareness and overall happiness.
+Our objective was to investigate the correlation that exists between cyclones, and climate awareness on overall global happiness. We had utilized the cyclone data set, happiness data set as well as the climate awareness data set through graphical interpretations, allowing for the identification of trends between countries and between data metrics. 
+
+     Firstly, we examined the link between wealth and happiness through the inspection of the log GDP per capita metric, and the life ladder metric evident in the life ladder happiness data set. Secondly, we explored the frequency of hurricanes per continent, which we later applied to draw conclusions as to how the frequency of hurricanes in each continent affects climate awareness and happiness. Finally, we directly studied climate awareness and happiness, which was achieved by manipulating the climate awareness data set to create an awareness score, which allowed us to effectively compare life ladder to climate awareness.
+
+     To provide a summarize of our findings, we detected that countries in which we see higher wealth rates tend to be more content, based on the life ladder score against wealth. Furthermore, North America has overwhelmingly seen the most hurricanes in contrast to other continents, which is expected due to the geographical nature of North America's position and the surrounding bodies of water. Lastly, in comparing happiness and climate awareness, we discovered that the continent of Europe tends to have happier and more climate aware individuals. In the reverse, it was identifiable that Asia and Africa tends to be ranked rower on the life ladder, and ranked lower on our climate awareness scale. 
+
+     Through our exploration methods we were able to infer that climate awareness and cyclones happiness does have a correlation effect on happiness. However, there lie other factors that possess stronger correlations such as the individual wealth of a country and the amount of social inequality pertaining to that country. Ultimately, our investigations were productive in the sense that we were able to understand the trends that tie into natural disasters, the rise in rates of climate change and our individual happiness. 
 
 # Introduction
 
-In this report, we are going to delve into the correlation between cyclones, climate awareness and the way in which happiness levels fluctuate based on the occurrences of cyclones. To establish a sense of importance on these topics, let's dive into the history of Hurricane Katrina. Making its mark in American history, there is empirical evidence that reveals how Hurricane Katrina has dictated happiness levels, while promoting the significance of climate awareness.
+     In this report, we are going to delve into the correlation between cyclones, climate awareness and the way in which happiness levels fluctuate based on the occurrences of cyclones and as a country becomes more aware of climate change. To establish a context on these topics, we can dive into the historical and cultural effects of Hurricane Katrina on New Orlens and the wider United States. Hurricane Katrina was responsible for the death of over 1800 indivduals, causing economic catastrophy that resulted in damages of $108 billion. Societally, Hurricane Katrina gravely decreased a sense of trust in the U.S. government, while increasing social tensions between minorities, and caused a drastic increase in disaster resilience. From this, we can draw the conclusion that hurricanes as well as other natural disasters may have a great impact on a country's national security and economic stability. 
 
-Moreover, we are applying exploratory techniques by visualizing the graphical representations of these data sets in order to conduct an effective comparison between the information sets.
+     Moreover, we are applying exploratory techniques by visualizing the graphical representations of these data sets in order to conduct an effective comparison between the information sets. 2Ultimately, our findings will depict how cyclones and hurricanes will play a role in determining happiness levels and the rates of climate awareness, which will convey the analysis of correlation and potentially causation.
 
-Ultimately, our findings will depict how cyclones/hurricanes will play a role in determining happiness levels and the rates of climate awareness, which will convey the analysis of causation.
 
 # Data Description
 
@@ -99,16 +104,12 @@ The data come from World Happiness Report Score (from 2023 report) and records v
 
 In order to clean/tidy the data, we separated each different removed repeated data, filtered out countries without a lifeladder score, and filtered out the outdated entries.
 
-## Combining the Data
 
-Explain how any combinations of data were performed. Explain what kind of join was needed, whether columns had to be modified (for example, matching "country" names.)
 
 
 # Exploratory Data Analysis
 
-To achieve our goals, we explored the data by...
-
-We explored many aspects of the data, but will demonstrate three. These are the how many hurricane observations are made in each continent, and the correlation between the happiness of a country and how aware its people are of climate change.
+To achieve our goals, we explored many insights of the data, but in this report we will emphasize three. The first insight consists of wealth and happiness. Our second insight is related to the frequency of hurricanes based on continents and to tie it all together, our final insight will be associated with happiness & climate awareness.
 
 The first aspect that we found interesting is shown in The correlation between how aware people are of climate change and how happy they are. The insight should be specific to the data shown, not a general statement beyond the data (leave that for the conclusion).
 
@@ -119,7 +120,7 @@ ggplot(comb2) +
   geom_line(mapping = aes(x = log_gdp_per_capita, y = life_ladder, colour = continent), show.legend=FALSE, na.rm = TRUE)+
   facet_wrap(~continent)+
   labs(
-    title = 'Log GPD Per Capita vs. Happiness',
+    title = 'Wealth vs. Happiness',
     y = 'Life Ladder',
     x = 'Log GDP Per Capita',
     caption = 'See footnote 1'
@@ -147,7 +148,7 @@ The next insight that we found is shown in Hurricane Observations Count by Conti
 
 ```{r insight2, fig.height=4, fig.width=6, fig.cap="Number of Hurricane Observations by Continent"}
 ggplot(cyc_with_cont)+
-  geom_bar(mapping = aes(x = continent, fill = continent), show.legend = FALSE)+
+  geom_bar(mapping = aes(x = reorder(continent, -table(continent)[continent]), fill = continent), show.legend = FALSE)+
   theme(plot.title = element_text(hjust = 0.5),
         axis.text.x = element_text(angle = 45, hjust = 1))+
   labs(title='Hurricane Observations Count by Continent',
@@ -178,7 +179,8 @@ see footnotes 3 and 4"
   geom_point(data = canada, shape = '*', color = "red", size = 6)
 ```
 
-This insight is supported by the summary statistics in table summary_stats.
+    This insight is supported by the summary statistics in table \@ref(tab:summary_stats). In this table, we calculated the awareness scores of countries by attributing a weight to each level of awareness, such that if everyone voted they are not aware, the score would be a 0. Moreover, if everyone voted that they are a little aware, then score would be a 0.33. If everyone voted that they are moderately aware, the score would be a 0.66. Finally, if everyone voted that they were very aware, the score would be a 1. This allows for the relationship between awareness and life ladder to be conveyed in an effective manner, allowing for a correlation to be identified. We also chose to color countries by continents in order to further analyze trends associated with countries. 
+
 
 ```{r summary_stats}
 summary_stats<-comb|>
@@ -193,13 +195,15 @@ kable(
 ```
 # Conclusion and Future Work
 
-Overall, we found .
+    Through the graphical representation identified within our first insight, we were able to identify three specific points that convey the relationship between happiness levels and climate awareness. The three points are as follows...
+    1. Correlation: As visible, the correlation factor is 0.5072062. When it comes to social sciences, a correlation factor greater than 0.35 is considered a strong correlation, and a factor of 0.5 is considered very strong. However, this may defer between contrasting areas of study. From this we can conclude that correlation does not directly imply causation, thus we suspect that wealth of a country may be a third factor that influences both climate awareness and happiness levels. Ultimately, the conclusion we can draw from this is that if a country exhibits a high climate awareness score, there is evidence that indicates the education and literacy rate of the the country is high. This connects to happiness because countries that have social services and an education system are wealthier, therefore they are inherently happier, having a higher sense of knowledge of. 
 
-A second paragraph about our findings.
+    2. Identifiable Trend: Evidently, a trend that we may notice among continents is that Asia and Africa tend to be lower on the life ladder, and have a lower score of climate awareness.
 
-The next steps in this analysis are...
+    The limitations of this analysis are as follows. (Do not simply list potential issues with sampling, but relate them to your analysis and how they affect your conclusions. An honest and complete acknowledgement of the limitations makes the analysis more trustworthy.)
 
-The limitations of this analysis are as follows. (Do not simply list potential issues with sampling, but relate them to your analysis and how they affect your conclusions. An honest and complete acknowledgement of the limitations makes the analysis more trustworthy.)
+- Longitude and latitude - Continents and longitude and latitude, assume that continents were shaped as a square, no easy way to convert them into countries)
+- Climate awareness only exists for one year, 2022
 
 # References
 
