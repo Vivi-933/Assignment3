@@ -28,9 +28,8 @@ library(arrow)
 library(ggrepel)
 library(knitr)
 library(kableExtra)
+library(tinytex)
 ```
-
-Note that all of the code is *hidden* by default. This file will be graded based on the insights, not the code.
 
 You will only submit the PDF version of this document. To knit to PDF, you'll need to run `install.packages("tinytex")` in the console, followed by `tinytex::install_tinytex()` (DO NOT PUT THESE COMMANDS IN AN RMD FILE!!!). If you encounter errors in "Knit to PDF", you can "knit to html" and then print the html file to PDF using your operating system's PDF view (e.g. Adobe Acrobat). Only standalone PDF files will be accepted by MyLS.
 
@@ -108,30 +107,17 @@ In order to clean/tidy the data, we separated each different removed repeated da
 
 Explain how any combinations of data were performed. Explain what kind of join was needed, whether columns had to be modified (for example, matching "country" names.)
 
+
 # Exploratory Data Analysis
 
 To achieve our goals, we explored the data by...
 
-We explored many aspects of the data, but will demonstrate three. These are the correlation between happiness & cyclones/hurricanes hitting a country, the correlation between cyclones/hurricanes hitting a country and how aware its people are of climate change, and the correlation between how aware the people of a country are and how happy those people are.
-
+We explored many aspects of the data, but will demonstrate three. These are the how many hurricane observations are made in each continent, and the correlation between the happiness of a country and how aware its people are of climate change.
 The first aspect that we found interesting is shown in \@ref(fig:insight1). The insight should be specific to the data shown, not a general statement beyond the data (leave that for the conclusion).
 
 
 ```{r insight1, fig.cap="the correlation between how aware people are of climate change and how happy they are"}
-comb <- inner_join(climate_awareness_data, happiness_data, by = 'country')
-rel_stat<-cor(comb$aware_score, comb$life_ladder)
-canada <- comb |> filter(country == "Canada")
-ggplot(comb, mapping = aes(y = life_ladder, x = aware_score))+
-  geom_point(mapping = aes(colour = continent)) +
-  geom_smooth(method = 'lm', formula = 'y~x') +
-  theme(plot.title = element_text(hjust = 0.5))+
-  labs(
-        x = "Climate Awareness", y = "Life Ladder",
-        title = "Climate Awareness vs. Happiness of a Country",
-        caption = "Correlation factor = 0.5072062"
-    ) +
-  geom_label_repel(data = canada, mapping = aes(label = country), color = "red") +
-  geom_point(data = canada, shape = '*', color = "red", size = 6)
+
 ```
 
 This insight is supported by the summary statistics in table \@ref(tab:summary_stats)
@@ -157,6 +143,7 @@ cont_find <- function(lat,lon){
   ifelse(lat >= 7 & lat <= 83 & lon >= -168 & lon <= -52, 'North America', 
   ifelse(lat >= -10 & lat <= 81 & lon >= 26 & lon <= 169, 'Asia', 
   'Intercontinental'))))))}
+
 cyc_with_cont<-cyclone_data|>
   mutate('continent' = cont_find(lat, lon))
 ```
@@ -176,7 +163,21 @@ ggplot(cyc_with_cont)+
 
 Finally, \@ref(fig:insight3) shows ...
 
-```{r insight3, fig.height=4, fig.width=6, fig.cap="the correlation between how aware the people of a country are and how happy those people are"}
+```{r insight3, fig.height=4, fig.width=6, fig.cap="the correlation between how aware of climate change the people of a country are and how happy those people are"}
+comb <- inner_join(climate_awareness_data, happiness_data, by = 'country')
+rel_stat<-cor(comb$aware_score, comb$life_ladder)
+canada <- comb |> filter(country == "Canada")
+ggplot(comb, mapping = aes(y = life_ladder, x = aware_score))+
+  geom_point(mapping = aes(colour = continent)) +
+  geom_smooth(method = 'lm', formula = 'y~x') +
+  theme(plot.title = element_text(hjust = 0.5))+
+  labs(
+        x = "Climate Awareness", y = "Life Ladder",
+        title = "Climate Awareness vs. Happiness of a Country",
+        caption = "Correlation factor = 0.5072062"
+    ) +
+  geom_label_repel(data = canada, mapping = aes(label = country), color = "red") +
+  geom_point(data = canada, shape = '*', color = "red", size = 6)
 ```
 
 # Conclusion and Future Work
