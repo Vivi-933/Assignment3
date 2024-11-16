@@ -95,7 +95,7 @@ In order to clean the data, we type of data entry into a unique column, filtered
 ```{r load_data3}
 happiness_data_0  <- read_parquet('happiness.parquet')
 happiness_data<-happiness_data_0|>
-  select(country, year, life_ladder)|>
+  select(country, year, life_ladder, log_gdp_per_capita)|>
   mutate(life_ladder = life_ladder * 0.1)
 ```
 
@@ -117,7 +117,8 @@ The first aspect that we found interesting is shown in \@ref(fig:insight1). The 
 
 
 ```{r insight1, fig.cap="the correlation between how aware people are of climate change and how happy they are"}
-
+comb2 <- inner_join(climate_awareness_data, happiness_data, by = 'country')
+ggplot(comb2) + geom_boxplot(mapping = aes(x = continent, y = life_ladder), na.rm = TRUE)
 ```
 
 This insight is supported by the summary statistics in table \@ref(tab:summary_stats)
