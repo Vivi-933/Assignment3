@@ -1,5 +1,5 @@
 ---
-title: "The effect of Cyclones on Climate Awareness and Happiness (WIP)"
+title: "The Effect of Cyclones on Climate Awareness and Happiness (WIP)"
 author: "Group 12"
 date: "November 12th, 2024"
 output: pdf_document
@@ -109,10 +109,11 @@ Explain how any combinations of data were performed. Explain what kind of join w
 To achieve our goals, we explored the data by...
 
 We explored many aspects of the data, but will demonstrate three. These are the how many hurricane observations are made in each continent, and the correlation between the happiness of a country and how aware its people are of climate change.
-The first aspect that we found interesting is shown in @ref(fig:insight1). The insight should be specific to the data shown, not a general statement beyond the data (leave that for the conclusion).
+
+The first aspect that we found interesting is shown in The correlation between how aware people are of climate change and how happy they are. The insight should be specific to the data shown, not a general statement beyond the data (leave that for the conclusion).
 
 
-```{r insight1, fig.cap="the correlation between how aware people are of climate change and how happy they are"}
+```{r insight1, fig.cap="The correlation between how aware people are of climate change and how happy they are"}
 comb2 <- inner_join(climate_awareness_data, happiness_data, by = 'country')
 ggplot(comb2) + 
   geom_line(mapping = aes(x = log_gdp_per_capita, y = life_ladder, colour = continent), show.legend=FALSE, na.rm = TRUE)+
@@ -142,7 +143,7 @@ cyc_with_cont<-cyclone_data|>
   mutate('continent' = cont_find(lat, lon))
 ```
 
-The next insight that we found is shown in @ref(fig:insight2).
+The next insight that we found is shown in Hurricane Observations Count by Continent.
 
 ```{r insight2, fig.height=4, fig.width=6, fig.cap="Number of Hurricane Observations by Continent"}
 ggplot(cyc_with_cont)+
@@ -157,9 +158,9 @@ ggplot(cyc_with_cont)+
 
 ```
 
-Finally, @ref(fig:insight3) shows ...
+Finally, The correlation between how aware of climate change the people of a country are and how happy those people are shows ...
 
-```{r insight3, fig.height=4, fig.width=6, fig.cap="the correlation between how aware of climate change the people of a country are and how happy those people are"}
+```{r insight3, fig.height=4, fig.width=6, fig.cap="The correlation between how aware of climate change the people of a country are and how happy those people are"}
 comb <- inner_join(climate_awareness_data, happiness_data, by = 'country')
 rel_stat<-cor(comb$aware_score, comb$life_ladder)
 canada <- comb |> filter(country == "Canada")
@@ -172,12 +173,14 @@ ggplot(comb, mapping = aes(y = life_ladder, x = aware_score))+
         title = "Climate Awareness vs. Happiness of a Country",
         caption = "Correlation factor = 0.5072062
 Sources: World Happiness Report (2023)
-Data for Good at Meta and the Yale Program on Climate Change Communication."
+Data for Good at Meta and 
+The Yale Program on Climate Change Communication."
     ) +
   geom_label_repel(data = canada, mapping = aes(label = country), color = "red") +
   geom_point(data = canada, shape = '*', color = "red", size = 6)
 ```
-This insight is supported by the summary statistics in table @ref(tab:summary_stats)
+
+This insight is supported by the summary statistics in table summary_stats.
 
 ```{r summary_stats}
 summary_stats<-comb|>
