@@ -118,7 +118,7 @@ The first aspect that we found interesting is shown in \@ref(fig:insight1). The 
 
 ```{r insight1, fig.cap="the correlation between how aware people are of climate change and how happy they are"}
 comb2 <- inner_join(climate_awareness_data, happiness_data, by = 'country')
-ggplot(comb2) + geom_boxplot(mapping = aes(x = continent, y = life_ladder), na.rm = TRUE)
+ggplot(comb2) + geom_line(mapping = aes(x = log_gdp_per_capita, y = life_ladder, colour = continent), na.rm = TRUE)+facet_wrap(~continent)
 ```
 
 This insight is supported by the summary statistics in table \@ref(tab:summary_stats)
