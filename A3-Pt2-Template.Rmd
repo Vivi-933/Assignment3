@@ -152,6 +152,63 @@ kable(
   kable_styling()
 ```
 
+```{r}
+cont_find <- function(lat,lon){
+  ifelse(lat >= -34 & lat <= 37 & lon >= -17 & lon <= 51, 'Africa', 'Intercontinental')
+  ifelse(lat >= 34 & lat <= 71 & lon >= -25 & lon <= 169, 'Europe', 'Intercontinental')
+  ifelse(lat >= -47 & lat <= 0 & lon >= 110 & lon <= 180, 'Oceania', 'Intercontinental')
+  ifelse(lat >= -56 & lat <= 13 & lon >= -81 & lon <= -35, 'South America', 'Intercontinental')
+  ifelse(lat >= 7 & lat <= 83 & lon >= -168 & lon <= -52, 'North America', 'Intercontinental')
+  ifelse(lat >= -10 & lat <= 81 & lon >= 26 & lon <= 169, 'Asia', 'Intercontinental')}
+  "
+    ifelse (lat >= -34){
+    if (lat <= 37){
+    if (lon >= -17){if
+      (lon <= 51){
+      continent = 'Africa'
+      return(continent)}
+    }
+    }
+    }
+  else if(lat >= 34 & lat <= 71){
+    if(lon >= -25 & lon <= 169){
+    continent = 'Europe'}
+  }
+  else if(lat >= -10 & lat <= 81){
+    if(lon >= 26 & lon <= 169 ){
+    continent = 'Asia'}
+  }
+  else if(lat >= 7 & lat <= 83){
+    if(lon >= -168 & lon <= -52){
+    continent = 'North America'}
+  }
+  else if(lat >= -56 & lat <= 13){
+    if(lon >= -81 & lon <= -35){
+    continent = 'South America'}
+  }
+  else if(lat >= -47 & lat <= 0){
+    if(lon >=  110 & lon <= 180){
+    continent = 'Oceania'}
+  }
+  else if(lat >= -10 & lat <= 81){
+    continent = 'Antarctica'}
+  "
+
+```
+
+
+
+```{r}
+cyc_with_cont<-cyclone_data|>
+  mutate('continent' = cont_find(lat, lon))
+cyc_with_cont
+
+```
+```{r}
+unique(cyc_with_cont$continent)
+```
+
+
 The next insight that we found is shown in \@ref(fig:insight2).
 
 ```{r insight2, fig.height=4, fig.width=6, fig.cap="the correlation between happiness & cyclones/hurricanes hitting a country"}
